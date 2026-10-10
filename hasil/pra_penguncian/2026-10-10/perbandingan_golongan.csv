@@ -1,0 +1,13 @@
+kelompok,versi,golongan,kriteria,kedua_cara,hanya_stateful_fuzzing,hanya_unit_test,tidak_terdeteksi
+terencana,semua,1,10_seed,3,0,0,0
+terencana,semua,1,minimal_1_seed,3,0,0,0
+terencana,semua,>1,10_seed,5,1,0,0
+terencana,semua,>1,minimal_1_seed,5,1,0,0
+sistematis,semua,1,10_seed,10,0,9,0
+sistematis,semua,1,minimal_1_seed,10,0,9,0
+sistematis,semua,>1,10_seed,10,1,9,0
+sistematis,semua,>1,minimal_1_seed,11,1,8,0
+sistematis,relevan,1,10_seed,10,0,2,0
+sistematis,relevan,1,minimal_1_seed,10,0,2,0
+sistematis,relevan,>1,10_seed,10,1,6,0
+sistematis,relevan,>1,minimal_1_seed,11,1,5,0

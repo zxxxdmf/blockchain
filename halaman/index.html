@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verifikasi Ijazah Fiktif</title>
+  <style>
+    :root { --teks: #1f2937; --latar: #f8fafc; --kartu: #ffffff; --garis: #d1d5db; --redup: #6b7280;
+            --asli: #15803d; --tidak: #b45309; --palsu: #b91c1c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; font-family: -apple-system, system-ui, sans-serif; color: var(--teks);
+           background: var(--latar); }
+    main { max-width: 520px; margin: 0 auto; }
+    h1 { font-size: 1.25rem; margin: 0 0 4px; }
+    .catatan { color: var(--redup); font-size: .85rem; margin: 0 0 16px; }
+    .kartu { background: var(--kartu); border: 1px solid var(--garis); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    input[type=text], input[type=file] { width: 100%; padding: 10px; font-size: 1rem; border: 1px solid var(--garis); border-radius: 8px; }
+    button { margin-top: 10px; width: 100%; padding: 12px; font-size: 1rem; border: 0; border-radius: 8px;
+             background: var(--teks); color: #fff; }
+    #hasil { text-align: center; font-size: 1.6rem; font-weight: 700; padding: 20px; }
+    #hasil.asli { color: var(--asli); } #hasil.tidak-berlaku { color: var(--tidak); } #hasil.palsu { color: var(--palsu); }
+    #rincian { color: var(--redup); font-size: .8rem; word-break: break-all; text-align: center; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Verifikasi Ijazah Fiktif</h1>
+  <p class="catatan">Sarana pengujian penelitian. Seluruh ijazah di sini fiktif. Halaman tidak menyimpan data.</p>
+
+  <div class="kartu"><strong>ID token dari QR code:</strong> <span id="id-token">-</span></div>
+
+  <div class="kartu">
+    <label for="nomor">Nomor ijazah pada dokumen</label>
+    <input id="nomor" type="text" autocomplete="off" placeholder="IJZ-FIKTIF-2026-...">
+    <button id="cek-nomor">Verifikasi dengan nomor</button>
+  </div>
+
+  <div class="kartu">
+    <label for="berkas">Atau unggah berkas PDF ijazah</label>
+    <input id="berkas" type="file" accept="application/pdf">
+    <button id="cek-berkas">Verifikasi dengan berkas</button>
+  </div>
+
+  <div class="kartu"><div id="hasil">-</div><div id="rincian"></div></div>
+</main>
+
+<script src="vendor/ethers-6.17.0.umd.min.js"></script>
+<script src="config.js"></script>
+<script type="module">
+  import { hashNomor, hashBerkas, idDariTautan, verifikasi } from "./verifikasi.js";
+  const ethers = window.ethers;
+  const idToken = idDariTautan(location.search);
+  document.getElementById("id-token").textContent = idToken ?? "tidak ada (pindai QR code pada ijazah)";
+  const elHasil = document.getElementById("hasil");
+  const elRincian = document.getElementById("rincian");
+
+  async function jalankan(hash) {
+    if (idToken === null) { elHasil.textContent = "ID token tidak ditemukan"; return; }
+    elHasil.className = ""; elHasil.textContent = "memeriksa..."; elRincian.textContent = "";
+    try {
+      const r = await verifikasi(ethers, { rpc: window.KONFIG.rpc, kontrak: window.KONFIG.kontrak, idToken, hash });
+      elHasil.textContent = r.kategori.toUpperCase();
+      elHasil.className = r.kategori.replace(" ", "-");
+      elRincian.textContent = `token ${idToken} | kode hasil kontrak ${r.kode} | hash ${hash}`;
+    } catch (e) {
+      elHasil.textContent = "gagal terhubung ke jaringan";
+      elRincian.textContent = String(e.shortMessage ?? e.message ?? e);
+    }
+  }
+
+  document.getElementById("cek-nomor").addEventListener("click", () => {
+    const nomor = document.getElementById("nomor").value;
+    if (nomor.trim()) jalankan(hashNomor(ethers, nomor));
+  });
+  document.getElementById("cek-berkas").addEventListener("click", async () => {
+    const f = document.getElementById("berkas").files[0];
+    if (f) jalankan(hashBerkas(ethers, new Uint8Array(await f.arrayBuffer())));
+  });
+</script>
+</body>
+</html>

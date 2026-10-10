@@ -1,0 +1,739 @@
+{
+ "test/acuan/unit/IjazahSBT.unit.t.sol:IjazahSBTUnitTest": {
+  "duration": "13ms 265\u00b5s 917ns",
+  "test_results": {
+   "test_cabut_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 250736
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "1ms 829\u00b5s 791ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_cabut_G()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 272488
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 351\u00b5s 83ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_cabut_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 216218
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 427\u00b5s 959ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_cabut_T()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 37548
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 421\u00b5s 541ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_gantiAdmin_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 91768
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xe34988262e68630cee18870f9833f34bc95b54e0": "adminBaru",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "1ms 859\u00b5s 875ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_gantiAdmin_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 35663
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "554\u00b5s 500ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_gantiAdmin_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 35366
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 419\u00b5s 125ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_hapusPenerbit_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 49883
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "1ms 801\u00b5s 250ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_hapusPenerbit_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 37643
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 342\u00b5s 250ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_hapusPenerbit_T()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 61845
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0x0d43a4af25a5f4a3a56ea805d7f5ca4ffda274a3": "bukanPenerbit",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "115\u00b5s 84ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_inisialisasi_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 85090
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "338\u00b5s 833ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_inisialisasi_G()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 35424
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "31\u00b5s 125ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_inisialisasi_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 28595
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "423\u00b5s",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_renounceRole_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 17711
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "30\u00b5s",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkanUlang_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 411638
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "249\u00b5s",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkanUlang_G()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 426982
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "200\u00b5s 208ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkanUlang_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 275271
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 348\u00b5s 208ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkanUlang_T()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 44896
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "51\u00b5s 959ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkanUlang_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 278288
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "543\u00b5s 375ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkan_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 211735
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "109\u00b5s 542ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkan_G()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 222706
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "556\u00b5s 208ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkan_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 41498
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "70\u00b5s 42ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_terbitkan_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 41266
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "64\u00b5s 916ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_tetapkanPenerbit_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 69652
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xd23e33e21ac2c20f2f2a70dc7c93212bb602a120": "penerbit2",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "103\u00b5s 42ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_tetapkanPenerbit_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 35621
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "2ms 372\u00b5s 459ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_tetapkanPenerbit_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 35255
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "40\u00b5s 959ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_transfer_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 230818
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xc2ad3e5064414d64c31cbce31a59b826cedc5106": "lain",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "152\u00b5s 167ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_transfer_P()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 217694
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "124\u00b5s 41ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_transfer_T()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 44151
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xc2ad3e5064414d64c31cbce31a59b826cedc5106": "lain",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "151\u00b5s 333ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_transfer_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 213257
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "81\u00b5s 833ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_verifikasi_B()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 198773
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "88\u00b5s 541ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_verifikasi_T()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 11011
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "35\u00b5s 916ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   },
+   "test_verifikasi_V()": {
+    "status": "Success",
+    "reason": null,
+    "counterexample": null,
+    "logs": [],
+    "decoded_logs": [],
+    "kind": {
+     "Unit": {
+      "gas": 198719
+     }
+    },
+    "traces": [],
+    "labeled_addresses": {
+     "0x8bac11f583c6e05276a1e49231210e5c1870ca33": "penerbit",
+     "0x92b5bdbe03c7408ef0d998f24a01dc362634411d": "penyerang",
+     "0xd5d6234ae5760e6d248c490c64543a076ade2150": "pemegang",
+     "0xaa10a84ce7d9ae517a52c6d5ca153b369af99ecf": "admin"
+    },
+    "duration": "102\u00b5s 541ns",
+    "breakpoints": {},
+    "gas_snapshots": {}
+   }
+  },
+  "warnings": []
+ }
+}

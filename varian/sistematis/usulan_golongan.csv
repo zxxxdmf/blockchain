@@ -1,0 +1,49 @@
+id,relevan,golongan,alasan
+S01H,ya,1,I6: penyerang memanggil inisialisasi dari keadaan setUp dan menjadi admin
+S01B,ya,gagal_disiapkan,inisialisasi pertama di setUp ditolak karena kondisi dibalik; kontrak tidak dapat disiapkan
+S02H,tidak,tanpa_pemicu,tidak terjangkau dari setUp kampanye invariant karena inisialisasi sudah dilakukan dan S01 menolak inisialisasi ulang; unit test test_inisialisasi_V men-deploy kontrak baru sehingga dapat mendeteksinya
+S02B,tidak,gagal_disiapkan,inisialisasi dengan admin bukan nol di setUp ditolak
+S03H,ya,1,I6: penyerang memanggil gantiAdmin untuk dirinya sendiri
+S03B,ya,1,"I6: alamat yang bukan admin dapat mengganti admin, admin sendiri ditolak"
+S04H,tidak,1,admin dapat mengganti admin ke alamat nol; handler tidak pernah memakai alamat nol sehingga tidak terjangkau handler
+S04B,tidak,1,penggantian admin ke alamat bukan nol ditolak; tidak melanggar aturan Tabel 2.1
+S05H,ya,1,I6/I1: penyerang menetapkan dirinya sebagai penerbit
+S05B,ya,gagal_disiapkan,setUp memanggil tetapkanPenerbit oleh admin; kondisi dibalik menolak admin sehingga kontrak tidak dapat disiapkan
+S06H,tidak,1,admin dapat menetapkan alamat nol sebagai penerbit; tidak terjangkau handler
+S06B,tidak,gagal_disiapkan,setUp menetapkan penerbit bukan nol; kondisi dibalik menolaknya sehingga kontrak tidak dapat disiapkan
+S07H,ya,1,I6: penyerang menghapus peran penerbit
+S07B,ya,1,I6: alamat yang bukan admin dapat menghapus penerbit
+S08H,ya,1,I1: penyerang menerbitkan token (sama dengan C1)
+S08B,ya,1,"I1: alamat tanpa peran dapat menerbitkan, penerbit ditolak"
+S09H,tidak,tanpa_pemicu,"tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah (ERC721InvalidReceiver, bukan AlamatNol)"
+S09B,tidak,1,penerbitan ke alamat bukan nol ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
+S10H,tidak,1,penerbitan dengan hash kosong diterima; handler tidak pernah memakai hash kosong sehingga tidak terjangkau handler
+S10B,tidak,1,penerbitan dengan hash bukan kosong ditolak sehingga tidak ada token yang dapat terbit
+S11H,ya,>1,I5: data yang sama diterbitkan dua kali (terbitkan lalu terbitkan data sama; sama dengan C5)
+S11B,ya,1,I5: penerbitan pertama setiap data ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
+S12H,ya,>1,"I3: token harus terbit dulu, lalu penyerang mencabutnya (sama dengan C3)"
+S12B,ya,>1,"I3: token harus terbit dulu, lalu alamat tanpa peran mencabutnya"
+S13H,tidak,1,pencabutan ID yang belum ada diterima tanpa akibat pada token yang ada; status ditimpa saat ID itu diterbitkan
+S13B,ya,>1,I3/I4: token harus terbit dulu; pencabutan token yang ada ditolak
+S14H,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, cabut token lama lagi (menghapus catatan token aktif), terbitkan ulang lagi"
+S14B,ya,>1,I3/I4: token harus terbit dulu; pencabutan token aktif ditolak
+S15H,ya,>1,"I1/I4: terbitkan, cabut, lalu penyerang menerbitkan ulang"
+S15B,ya,>1,"I1/I4: terbitkan, cabut, lalu alamat tanpa peran dapat menerbitkan ulang"
+S16H,tidak,tanpa_pemicu,"tetap ditolak karena status dicabut ID yang belum ada selalu salah; hanya jenis galat yang berubah (BelumDicabut, bukan TokenTidakAda) sehingga unit test dengan expectRevert(selector) mendeteksinya"
+S16B,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang ada ditolak"
+S17H,ya,tanpa_pemicu,"tetap ditolak karena token yang belum dicabut selalu tercatat sebagai token aktif; hanya jenis galat yang berubah (MasihAdaTokenAktif, bukan BelumDicabut)"
+S17B,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang dicabut ditolak"
+S18H,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, terbitkan ulang lagi dari token lama sehingga ada dua token aktif"
+S18B,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang ditolak saat tidak ada token aktif"
+S19H,tidak,tanpa_pemicu,tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah
+S19B,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang ke alamat bukan nol ditolak"
+S20H,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash kosong diterima; tidak terjangkau handler"
+S20B,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash bukan kosong ditolak"
+S21H,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
+S21B,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
+S22H,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash lain dinyatakan cocok (sama dengan C9)"
+S22B,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash yang benar dinyatakan tidak cocok"
+S23H,ya,>1,"I7: terbitkan, cabut, lalu verifikasi tidak menghasilkan dicabut (sama dengan C8)"
+S23B,ya,>1,"I7: terbitkan, lalu verifikasi token aktif menghasilkan dicabut"
+S24H,ya,>1,"I2: terbitkan, lalu token dipindahkan (sama dengan C2)"
+S24B,ya,1,I2: penerbitan pertama ditolak sehingga tidak ada token; tidak melanggar invariant

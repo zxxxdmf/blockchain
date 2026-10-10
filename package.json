@@ -1,0 +1,9 @@
+{
+  "name": "eksperimen-sbt-fuzzing",
+  "private": true,
+  "description": "Alat pendamping: ethers.js untuk halaman verifikasi dan uji kesamaan keccak256 (Tabel 2.4 baris 7).",
+  "dependencies": {
+    "ethers": "6.17.0"
+  },
+  "type": "module"
+}

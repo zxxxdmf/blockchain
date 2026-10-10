@@ -1,0 +1,10 @@
+kode,invariant_sasaran,golongan,cacat,rujukan
+C1,I1,1,fungsi penerbitan tanpa pemeriksaan peran,Ussatova et al. (2026); Wei et al. (2025)
+C2,I2,>1,fungsi transfer tidak dikunci,Daubenschütz dan Anders (2022)
+C3,I3,>1,pencabutan dapat dilakukan selain penerbit,Wankhede et al. (2023)
+C4,I4,>1,token yang dicabut dapat diaktifkan kembali,siklus hidup token (Gambar 2.1)
+C5,I5,>1,data ijazah yang sama dapat diterbitkan dua kali,Bimantoro et al. (2026)
+C6,I6,1,penggantian admin tanpa pemeriksaan kewenangan,Su et al. (2022)
+C7,I6,1,pengaman fungsi inisialisasi dihapus sehingga admin dapat ditetapkan ulang,He et al. (2023)
+C8,I7,>1,fungsi verifikasi mengabaikan status dicabut,Wankhede et al. (2023)
+C9,I7,>1,fungsi verifikasi tidak mencocokkan hash sehingga token terdaftar selalu dinyatakan cocok,Bimantoro et al. (2026)

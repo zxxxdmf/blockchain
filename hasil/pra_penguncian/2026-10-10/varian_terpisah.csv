@@ -1,0 +1,10 @@
+target,kelompok,invariant_sasaran,relevan,golongan,perhitungan,seed_mendeteksi,dari_seed,calls_median,calls_min,calls_maks,persen_anggaran_median,durasi_ms_median,durasi_ms_min,durasi_ms_maks,panjang_shrink_min,panjang_shrink_median,shrink_cocok_golongan,status_lain,unit_test,unit_tes_gagal
+S01B,sistematis,,ya,gagal_disiapkan,terpisah,0,10,,,,,,,,,,,gagal_disiapkan,terdeteksi,setUp()
+S02H,sistematis,,tidak,tanpa_pemicu,terpisah,0,10,,,,,,,,,,,,terdeteksi,test_inisialisasi_V()
+S02B,sistematis,,tidak,gagal_disiapkan,terpisah,0,10,,,,,,,,,,,gagal_disiapkan,terdeteksi,setUp()
+S05B,sistematis,,ya,gagal_disiapkan,terpisah,0,10,,,,,,,,,,,gagal_disiapkan,terdeteksi,setUp()
+S06B,sistematis,,tidak,gagal_disiapkan,terpisah,0,10,,,,,,,,,,,gagal_disiapkan,terdeteksi,setUp()
+S09H,sistematis,,tidak,tanpa_pemicu,terpisah,0,10,,,,,,,,,,,,lolos,
+S16H,sistematis,,tidak,tanpa_pemicu,terpisah,0,10,,,,,,,,,,,,terdeteksi,test_terbitkanUlang_T()
+S17H,sistematis,,ya,tanpa_pemicu,terpisah,0,10,,,,,,,,,,,,lolos,
+S19H,sistematis,,tidak,tanpa_pemicu,terpisah,0,10,,,,,,,,,,,,lolos,

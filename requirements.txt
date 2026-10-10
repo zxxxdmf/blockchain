@@ -1,0 +1,4 @@
+# Tabel 2.4 baris 6 (Python 3.14.7)
+qrcode==8.2
+pillow==12.3.0
+reportlab==5.0.1
