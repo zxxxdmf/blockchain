@@ -51,7 +51,7 @@ FOUNDRY_PROFILE=ujialat forge test --match-contract RantaiTest >/dev/null 2>&1 &
 ./uji_alat/cek_anvil.sh 2>/dev/null | grep -q "HASIL: LULUS" && ok "deploy Anvil + panggilan cast" || kurang "uji cek_anvil.sh gagal"
 
 echo "Kode penelitian"
-forge test --match-path 'test/acuan/unit/*' 2>/dev/null | grep -q "33 passed; 0 failed" && ok "kontrak acuan lulus 33 unit test berskenario tetap" || kurang "unit test kontrak acuan tidak lulus semua"
+forge test --match-path 'test/acuan/unit/*' 2>/dev/null | grep -q "35 passed; 0 failed" && ok "kontrak acuan lulus 35 unit test berskenario tetap" || kurang "unit test kontrak acuan tidak lulus semua"
 [ "$(ls -d varian/terencana/C* 2>/dev/null | wc -l | tr -d ' ')" = "9" ] && [ "$(ls -d varian/sistematis/S* 2>/dev/null | wc -l | tr -d ' ')" = "48" ] \
   && ok "varian: 9 terencana, 48 sistematis" || kurang "varian belum dibangkitkan (varian/buat_varian.py)"
 ./script/cek_aturan_anvil.sh 2>/dev/null | grep -q "HASIL: LULUS" && ok "Tahap 2: aturan Tabel 2.1 melalui cast di Anvil (31 pemeriksaan)" || kurang "pemeriksaan aturan Tahap 2 di Anvil gagal"

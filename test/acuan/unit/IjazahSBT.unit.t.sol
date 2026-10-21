@@ -241,6 +241,20 @@ contract IjazahSBTUnitTest is Test {
         ijazah.renounceRole(peran, penerbit);
     }
 
+    function test_grantRole_P() public {
+        bytes32 peran = ijazah.PENERBIT();
+        vm.prank(penyerang);
+        vm.expectRevert(IjazahSBT.FungsiDinonaktifkan.selector);
+        ijazah.grantRole(peran, penyerang);
+    }
+
+    function test_revokeRole_P() public {
+        bytes32 peran = ijazah.PENERBIT();
+        vm.prank(penyerang);
+        vm.expectRevert(IjazahSBT.FungsiDinonaktifkan.selector);
+        ijazah.revokeRole(peran, penerbit);
+    }
+
     function test_verifikasi_B() public {
         uint256 id = _terbitkan(0);
         assertEq(uint256(ijazah.verifikasi(id, D.hashNomor(0))), uint256(IjazahSBT.Hasil.Aktif));
