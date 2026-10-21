@@ -18,7 +18,8 @@ Bangkitkan ulang setelah kontrak acuan berubah: `.venv/bin/python -I varian/buat
   hanya mengubah jenis galat (S09H, S16H, S17H, S19H), walaupun unit test dapat menggagalkannya karena memeriksa
   selector galat (S16H); juga S02H, yang tidak terjangkau dari `setUp` tetapi digagalkan unit test yang men-deploy
   kontrak baru.
-- **gagal_disiapkan**: varian yang membuat `setUp` gagal (S01B, S02B).
+- **gagal_disiapkan**: varian yang membuat `setUp` gagal (S01B, S02B, S05B, S06B; dua yang terakhir dikoreksi
+  2026-10-11, lihat `catatan/LOG_PERUBAHAN.md`).
 - tanpa_pemicu dan gagal_disiapkan disajikan dalam tabel tersendiri (`hasil/olahan/varian_terpisah.csv`),
   terpisah dari jumlah varian terdeteksi dan dari perbandingan per golongan.
 - Klaim di atas diuji langsung pada 2026-10-09: S01B dan S02B gagal pada setUp; S02H, S09H, S16H, S17H, S19H tetap

@@ -1,19 +1,3 @@
-"""Membangkitkan varian kontrak dengan cacat sisipan (Tahap 4) dari src/IjazahSBT.sol.
-
-Kelompok terencana: C1 sampai C9 sesuai Tabel 2.6, masing-masing mengubah satu bagian kontrak acuan.
-Kelompok sistematis: prinsip mutation testing. Dua aturan, yaitu menghapus pemeriksaan (H) dan membalik
-kondisinya (B), diterapkan satu per satu pada SETIAP baris pemeriksaan `if (...) revert ...;` atau
-`if (...) return Hasil...;` di kontrak acuan. Lokasi ditentukan oleh kode, tidak dipilih penulis; pustaka
-OpenZeppelin tidak disentuh.
-
-Keluaran:
-  varian/terencana/<C>/IjazahSBT.sol, varian/terencana/daftar.csv
-  varian/sistematis/<S..H|S..B>/IjazahSBT.sol, varian/sistematis/daftar.csv
-Kolom `relevan` dan `golongan` di daftar.csv diisi dari usulan_golongan.csv (analisis kode) dan WAJIB ditinjau
-serta di-commit sebelum eksekusi; golongan tidak diubah setelah eksekusi (Tahap 4).
-
-Pemakaian: .venv/bin/python -I varian/buat_varian.py
-"""
 import csv
 import pathlib
 import re
@@ -25,8 +9,6 @@ DIR_T = AKAR / "varian" / "terencana"
 DIR_S = AKAR / "varian" / "sistematis"
 POLA = re.compile(r"^(?P<indent>\s*)if \((?P<kondisi>.+)\) (?P<aksi>revert \w+\(\)|return Hasil\.\w+);\s*$")
 
-# ------------------------------------------------------------------ kelompok terencana (Tabel 2.6)
-# (kode, invariant sasaran, golongan jumlah transaksi, cacat, rujukan, [(teks lama, teks baru)])
 TERENCANA = [
     ("C1", "I1", "1", "fungsi penerbitan tanpa pemeriksaan peran", "Ussatova et al. (2026); Wei et al. (2025)",
      [("returns (uint256 id) {\n        if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();\n",
@@ -38,7 +20,7 @@ TERENCANA = [
        "function cabut(uint256 id) external {\n")]),
     ("C4", "I4", ">1", "token yang dicabut dapat diaktifkan kembali", "siklus hidup token (Gambar 2.1)",
      [("        if (_data[id].dicabut) revert SudahDicabut();\n        _data[id].dicabut = true;\n",
-       "        _data[id].dicabut = !_data[id].dicabut; // pencabutan kedua mengaktifkan kembali token\n")]),
+       "        _data[id].dicabut = !_data[id].dicabut;\n")]),
     ("C5", "I5", ">1", "data ijazah yang sama dapat diterbitkan dua kali", "Bimantoro et al. (2026)",
      [("        if (pernahTerdaftar[hashNomor]) revert DataGanda();\n", "")]),
     ("C6", "I6", "1", "penggantian admin tanpa pemeriksaan kewenangan", "Su et al. (2022)",
@@ -54,11 +36,6 @@ TERENCANA = [
 ]
 
 
-def tandai(sumber: str, catatan: str) -> str:
-    baris = sumber.split("\n", 1)
-    return f"{baris[0]}\n// VARIAN: {catatan}\n{baris[1]}"
-
-
 def tulis(dir_varian: pathlib.Path, isi: str) -> None:
     dir_varian.mkdir(parents=True, exist_ok=True)
     (dir_varian / "IjazahSBT.sol").write_text(isi)
@@ -71,7 +48,7 @@ def terencana(acuan: str) -> None:
         for lama, baru in ganti:
             assert isi.count(lama) == 1, f"{kode}: teks yang diganti harus muncul tepat satu kali"
             isi = isi.replace(lama, baru)
-        tulis(DIR_T / kode, tandai(isi, f"{kode} - {cacat}"))
+        tulis(DIR_T / kode, isi)
         rows.append({"kode": kode, "invariant_sasaran": sasaran, "golongan": gol, "cacat": cacat, "rujukan": rujukan})
     with open(DIR_T / "daftar.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -103,12 +80,12 @@ def sistematis(acuan: str) -> None:
             vid = f"S{no:02d}{op}"
             salin = list(baris)
             if op == "H":
-                salin[i] = f"{m['indent']}// [{vid}] pemeriksaan dihapus: {teks.strip()}"
+                del salin[i]
                 ket = "hapus pemeriksaan"
             else:
-                salin[i] = f"{m['indent']}if (!({m['kondisi']})) {m['aksi']}; // [{vid}] kondisi dibalik"
+                salin[i] = f"{m['indent']}if (!({m['kondisi']})) {m['aksi']};"
                 ket = "balik kondisi"
-            tulis(DIR_S / vid, tandai("\n".join(salin), f"{vid} - {ket} pada {fungsi}() baris {i + 1}"))
+            tulis(DIR_S / vid, "\n".join(salin))
             u = usulan.get(vid, {})
             rows.append({
                 "id": vid, "fungsi": fungsi, "baris": i + 1, "operator": ket, "pemeriksaan_asli": teks.strip(),

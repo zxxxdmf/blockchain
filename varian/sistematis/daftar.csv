@@ -1,49 +1,49 @@
 id,fungsi,baris,operator,pemeriksaan_asli,relevan,golongan,alasan
-S01H,inisialisasi,71,hapus pemeriksaan,if (sudahDiinisialisasi) revert SudahDiinisialisasi();,ya,1,I6: penyerang memanggil inisialisasi dari keadaan setUp dan menjadi admin
-S01B,inisialisasi,71,balik kondisi,if (sudahDiinisialisasi) revert SudahDiinisialisasi();,ya,gagal_disiapkan,inisialisasi pertama di setUp ditolak karena kondisi dibalik; kontrak tidak dapat disiapkan
-S02H,inisialisasi,72,hapus pemeriksaan,if (adminAwal == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,tidak terjangkau dari setUp kampanye invariant karena inisialisasi sudah dilakukan dan S01 menolak inisialisasi ulang; unit test test_inisialisasi_V men-deploy kontrak baru sehingga dapat mendeteksinya
-S02B,inisialisasi,72,balik kondisi,if (adminAwal == address(0)) revert AlamatNol();,tidak,gagal_disiapkan,inisialisasi dengan admin bukan nol di setUp ditolak
-S03H,gantiAdmin,80,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: penyerang memanggil gantiAdmin untuk dirinya sendiri
-S03B,gantiAdmin,80,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,"I6: alamat yang bukan admin dapat mengganti admin, admin sendiri ditolak"
-S04H,gantiAdmin,81,hapus pemeriksaan,if (baru == address(0)) revert AlamatNol();,tidak,1,admin dapat mengganti admin ke alamat nol; handler tidak pernah memakai alamat nol sehingga tidak terjangkau handler
-S04B,gantiAdmin,81,balik kondisi,if (baru == address(0)) revert AlamatNol();,tidak,1,penggantian admin ke alamat bukan nol ditolak; tidak melanggar aturan Tabel 2.1
-S05H,tetapkanPenerbit,90,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6/I1: penyerang menetapkan dirinya sebagai penerbit
-S05B,tetapkanPenerbit,90,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,gagal_disiapkan,setUp memanggil tetapkanPenerbit oleh admin; kondisi dibalik menolak admin sehingga kontrak tidak dapat disiapkan
-S06H,tetapkanPenerbit,91,hapus pemeriksaan,if (akun == address(0)) revert AlamatNol();,tidak,1,admin dapat menetapkan alamat nol sebagai penerbit; tidak terjangkau handler
-S06B,tetapkanPenerbit,91,balik kondisi,if (akun == address(0)) revert AlamatNol();,tidak,gagal_disiapkan,setUp menetapkan penerbit bukan nol; kondisi dibalik menolaknya sehingga kontrak tidak dapat disiapkan
-S07H,hapusPenerbit,96,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: penyerang menghapus peran penerbit
-S07B,hapusPenerbit,96,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: alamat yang bukan admin dapat menghapus penerbit
-S08H,terbitkan,117,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,1,I1: penyerang menerbitkan token (sama dengan C1)
-S08B,terbitkan,117,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,1,"I1: alamat tanpa peran dapat menerbitkan, penerbit ditolak"
-S09H,terbitkan,118,hapus pemeriksaan,if (pemegang == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,"tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah (ERC721InvalidReceiver, bukan AlamatNol)"
-S09B,terbitkan,118,balik kondisi,if (pemegang == address(0)) revert AlamatNol();,tidak,1,penerbitan ke alamat bukan nol ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
-S10H,terbitkan,119,hapus pemeriksaan,if (hashNomor == bytes32(0) || hashDokumen == bytes32(0)) revert HashKosong();,tidak,1,penerbitan dengan hash kosong diterima; handler tidak pernah memakai hash kosong sehingga tidak terjangkau handler
-S10B,terbitkan,119,balik kondisi,if (hashNomor == bytes32(0) || hashDokumen == bytes32(0)) revert HashKosong();,tidak,1,penerbitan dengan hash bukan kosong ditolak sehingga tidak ada token yang dapat terbit
-S11H,terbitkan,120,hapus pemeriksaan,if (pernahTerdaftar[hashNomor]) revert DataGanda();,ya,>1,I5: data yang sama diterbitkan dua kali (terbitkan lalu terbitkan data sama; sama dengan C5)
-S11B,terbitkan,120,balik kondisi,if (pernahTerdaftar[hashNomor]) revert DataGanda();,ya,1,I5: penerbitan pertama setiap data ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
-S12H,cabut,127,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I3: token harus terbit dulu, lalu penyerang mencabutnya (sama dengan C3)"
-S12B,cabut,127,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I3: token harus terbit dulu, lalu alamat tanpa peran mencabutnya"
-S13H,cabut,128,hapus pemeriksaan,if (_ownerOf(id) == address(0)) revert TokenTidakAda();,tidak,1,pencabutan ID yang belum ada diterima tanpa akibat pada token yang ada; status ditimpa saat ID itu diterbitkan
-S13B,cabut,128,balik kondisi,if (_ownerOf(id) == address(0)) revert TokenTidakAda();,ya,>1,I3/I4: token harus terbit dulu; pencabutan token yang ada ditolak
-S14H,cabut,129,hapus pemeriksaan,if (_data[id].dicabut) revert SudahDicabut();,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, cabut token lama lagi (menghapus catatan token aktif), terbitkan ulang lagi"
-S14B,cabut,129,balik kondisi,if (_data[id].dicabut) revert SudahDicabut();,ya,>1,I3/I4: token harus terbit dulu; pencabutan token aktif ditolak
-S15H,terbitkanUlang,141,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I1/I4: terbitkan, cabut, lalu penyerang menerbitkan ulang"
-S15B,terbitkanUlang,141,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I1/I4: terbitkan, cabut, lalu alamat tanpa peran dapat menerbitkan ulang"
-S16H,terbitkanUlang,142,hapus pemeriksaan,if (_ownerOf(idLama) == address(0)) revert TokenTidakAda();,tidak,tanpa_pemicu,"tetap ditolak karena status dicabut ID yang belum ada selalu salah; hanya jenis galat yang berubah (BelumDicabut, bukan TokenTidakAda) sehingga unit test dengan expectRevert(selector) mendeteksinya"
-S16B,terbitkanUlang,142,balik kondisi,if (_ownerOf(idLama) == address(0)) revert TokenTidakAda();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang ada ditolak"
-S17H,terbitkanUlang,143,hapus pemeriksaan,if (!_data[idLama].dicabut) revert BelumDicabut();,ya,tanpa_pemicu,"tetap ditolak karena token yang belum dicabut selalu tercatat sebagai token aktif; hanya jenis galat yang berubah (MasihAdaTokenAktif, bukan BelumDicabut)"
-S17B,terbitkanUlang,143,balik kondisi,if (!_data[idLama].dicabut) revert BelumDicabut();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang dicabut ditolak"
-S18H,terbitkanUlang,144,hapus pemeriksaan,if (tokenAktif[_data[idLama].hashNomor] != 0) revert MasihAdaTokenAktif();,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, terbitkan ulang lagi dari token lama sehingga ada dua token aktif"
-S18B,terbitkanUlang,144,balik kondisi,if (tokenAktif[_data[idLama].hashNomor] != 0) revert MasihAdaTokenAktif();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang ditolak saat tidak ada token aktif"
-S19H,terbitkanUlang,145,hapus pemeriksaan,if (pemegangBaru == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah
-S19B,terbitkanUlang,145,balik kondisi,if (pemegangBaru == address(0)) revert AlamatNol();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang ke alamat bukan nol ditolak"
-S20H,terbitkanUlang,146,hapus pemeriksaan,if (hashDokumenBaru == bytes32(0)) revert HashKosong();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash kosong diterima; tidak terjangkau handler"
-S20B,terbitkanUlang,146,balik kondisi,if (hashDokumenBaru == bytes32(0)) revert HashKosong();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash bukan kosong ditolak"
-S21H,verifikasi,156,hapus pemeriksaan,if (_ownerOf(id) == address(0)) return Hasil.TidakTerdaftar;,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
-S21B,verifikasi,156,balik kondisi,if (_ownerOf(id) == address(0)) return Hasil.TidakTerdaftar;,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
-S22H,verifikasi,158,hapus pemeriksaan,if (hashDiperiksa != d.hashNomor && hashDiperiksa != d.hashDokumen) return Hasil.TidakCocok;,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash lain dinyatakan cocok (sama dengan C9)"
-S22B,verifikasi,158,balik kondisi,if (hashDiperiksa != d.hashNomor && hashDiperiksa != d.hashDokumen) return Hasil.TidakCocok;,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash yang benar dinyatakan tidak cocok"
-S23H,verifikasi,159,hapus pemeriksaan,if (d.dicabut) return Hasil.Dicabut;,ya,>1,"I7: terbitkan, cabut, lalu verifikasi tidak menghasilkan dicabut (sama dengan C8)"
-S23B,verifikasi,159,balik kondisi,if (d.dicabut) return Hasil.Dicabut;,ya,>1,"I7: terbitkan, lalu verifikasi token aktif menghasilkan dicabut"
-S24H,_update,178,hapus pemeriksaan,if (_ownerOf(tokenId) != address(0)) revert TokenTerkunci();,ya,>1,"I2: terbitkan, lalu token dipindahkan (sama dengan C2)"
-S24B,_update,178,balik kondisi,if (_ownerOf(tokenId) != address(0)) revert TokenTerkunci();,ya,1,I2: penerbitan pertama ditolak sehingga tidak ada token; tidak melanggar invariant
+S01H,inisialisasi,57,hapus pemeriksaan,if (sudahDiinisialisasi) revert SudahDiinisialisasi();,ya,1,I6: penyerang memanggil inisialisasi dari keadaan setUp dan menjadi admin
+S01B,inisialisasi,57,balik kondisi,if (sudahDiinisialisasi) revert SudahDiinisialisasi();,ya,gagal_disiapkan,inisialisasi pertama di setUp ditolak karena kondisi dibalik; kontrak tidak dapat disiapkan
+S02H,inisialisasi,58,hapus pemeriksaan,if (adminAwal == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,tidak terjangkau dari setUp kampanye invariant karena inisialisasi sudah dilakukan dan S01 menolak inisialisasi ulang; unit test test_inisialisasi_V men-deploy kontrak baru sehingga dapat mendeteksinya
+S02B,inisialisasi,58,balik kondisi,if (adminAwal == address(0)) revert AlamatNol();,tidak,gagal_disiapkan,inisialisasi dengan admin bukan nol di setUp ditolak
+S03H,gantiAdmin,65,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: penyerang memanggil gantiAdmin untuk dirinya sendiri
+S03B,gantiAdmin,65,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,"I6: alamat yang bukan admin dapat mengganti admin, admin sendiri ditolak"
+S04H,gantiAdmin,66,hapus pemeriksaan,if (baru == address(0)) revert AlamatNol();,tidak,1,admin dapat mengganti admin ke alamat nol; handler tidak pernah memakai alamat nol sehingga tidak terjangkau handler
+S04B,gantiAdmin,66,balik kondisi,if (baru == address(0)) revert AlamatNol();,tidak,1,penggantian admin ke alamat bukan nol ditolak; tidak melanggar aturan Tabel 2.1
+S05H,tetapkanPenerbit,75,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6/I1: penyerang menetapkan dirinya sebagai penerbit
+S05B,tetapkanPenerbit,75,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,gagal_disiapkan,setUp memanggil tetapkanPenerbit oleh admin; kondisi dibalik menolak admin sehingga kontrak tidak dapat disiapkan
+S06H,tetapkanPenerbit,76,hapus pemeriksaan,if (akun == address(0)) revert AlamatNol();,tidak,1,admin dapat menetapkan alamat nol sebagai penerbit; tidak terjangkau handler
+S06B,tetapkanPenerbit,76,balik kondisi,if (akun == address(0)) revert AlamatNol();,tidak,gagal_disiapkan,setUp menetapkan penerbit bukan nol; kondisi dibalik menolaknya sehingga kontrak tidak dapat disiapkan
+S07H,hapusPenerbit,81,hapus pemeriksaan,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: penyerang menghapus peran penerbit
+S07B,hapusPenerbit,81,balik kondisi,"if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) revert BukanAdmin();",ya,1,I6: alamat yang bukan admin dapat menghapus penerbit
+S08H,terbitkan,98,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,1,I1: penyerang menerbitkan token (sama dengan C1)
+S08B,terbitkan,98,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,1,"I1: alamat tanpa peran dapat menerbitkan, penerbit ditolak"
+S09H,terbitkan,99,hapus pemeriksaan,if (pemegang == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,"tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah (ERC721InvalidReceiver, bukan AlamatNol)"
+S09B,terbitkan,99,balik kondisi,if (pemegang == address(0)) revert AlamatNol();,tidak,1,penerbitan ke alamat bukan nol ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
+S10H,terbitkan,100,hapus pemeriksaan,if (hashNomor == bytes32(0) || hashDokumen == bytes32(0)) revert HashKosong();,tidak,1,penerbitan dengan hash kosong diterima; handler tidak pernah memakai hash kosong sehingga tidak terjangkau handler
+S10B,terbitkan,100,balik kondisi,if (hashNomor == bytes32(0) || hashDokumen == bytes32(0)) revert HashKosong();,tidak,1,penerbitan dengan hash bukan kosong ditolak sehingga tidak ada token yang dapat terbit
+S11H,terbitkan,101,hapus pemeriksaan,if (pernahTerdaftar[hashNomor]) revert DataGanda();,ya,>1,I5: data yang sama diterbitkan dua kali (terbitkan lalu terbitkan data sama; sama dengan C5)
+S11B,terbitkan,101,balik kondisi,if (pernahTerdaftar[hashNomor]) revert DataGanda();,ya,1,I5: penerbitan pertama setiap data ditolak sehingga tidak ada token yang dapat terbit; tidak melanggar invariant
+S12H,cabut,107,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I3: token harus terbit dulu, lalu penyerang mencabutnya (sama dengan C3)"
+S12B,cabut,107,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I3: token harus terbit dulu, lalu alamat tanpa peran mencabutnya"
+S13H,cabut,108,hapus pemeriksaan,if (_ownerOf(id) == address(0)) revert TokenTidakAda();,tidak,1,pencabutan ID yang belum ada diterima tanpa akibat pada token yang ada; status ditimpa saat ID itu diterbitkan
+S13B,cabut,108,balik kondisi,if (_ownerOf(id) == address(0)) revert TokenTidakAda();,ya,>1,I3/I4: token harus terbit dulu; pencabutan token yang ada ditolak
+S14H,cabut,109,hapus pemeriksaan,if (_data[id].dicabut) revert SudahDicabut();,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, cabut token lama lagi (menghapus catatan token aktif), terbitkan ulang lagi"
+S14B,cabut,109,balik kondisi,if (_data[id].dicabut) revert SudahDicabut();,ya,>1,I3/I4: token harus terbit dulu; pencabutan token aktif ditolak
+S15H,terbitkanUlang,119,hapus pemeriksaan,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I1/I4: terbitkan, cabut, lalu penyerang menerbitkan ulang"
+S15B,terbitkanUlang,119,balik kondisi,"if (!hasRole(PENERBIT, msg.sender)) revert BukanPenerbit();",ya,>1,"I1/I4: terbitkan, cabut, lalu alamat tanpa peran dapat menerbitkan ulang"
+S16H,terbitkanUlang,120,hapus pemeriksaan,if (_ownerOf(idLama) == address(0)) revert TokenTidakAda();,tidak,tanpa_pemicu,"tetap ditolak karena status dicabut ID yang belum ada selalu salah; hanya jenis galat yang berubah (BelumDicabut, bukan TokenTidakAda) sehingga unit test dengan expectRevert(selector) mendeteksinya"
+S16B,terbitkanUlang,120,balik kondisi,if (_ownerOf(idLama) == address(0)) revert TokenTidakAda();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang ada ditolak"
+S17H,terbitkanUlang,121,hapus pemeriksaan,if (!_data[idLama].dicabut) revert BelumDicabut();,ya,tanpa_pemicu,"tetap ditolak karena token yang belum dicabut selalu tercatat sebagai token aktif; hanya jenis galat yang berubah (MasihAdaTokenAktif, bukan BelumDicabut)"
+S17B,terbitkanUlang,121,balik kondisi,if (!_data[idLama].dicabut) revert BelumDicabut();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang token yang dicabut ditolak"
+S18H,terbitkanUlang,122,hapus pemeriksaan,if (tokenAktif[_data[idLama].hashNomor] != 0) revert MasihAdaTokenAktif();,ya,>1,"I5: terbitkan, cabut, terbitkan ulang, terbitkan ulang lagi dari token lama sehingga ada dua token aktif"
+S18B,terbitkanUlang,122,balik kondisi,if (tokenAktif[_data[idLama].hashNomor] != 0) revert MasihAdaTokenAktif();,ya,>1,"I4: terbitkan, cabut, lalu penerbitan ulang ditolak saat tidak ada token aktif"
+S19H,terbitkanUlang,123,hapus pemeriksaan,if (pemegangBaru == address(0)) revert AlamatNol();,tidak,tanpa_pemicu,tetap ditolak karena OpenZeppelin _mint menolak alamat nol; hanya jenis galat yang berubah
+S19B,terbitkanUlang,123,balik kondisi,if (pemegangBaru == address(0)) revert AlamatNol();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang ke alamat bukan nol ditolak"
+S20H,terbitkanUlang,124,hapus pemeriksaan,if (hashDokumenBaru == bytes32(0)) revert HashKosong();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash kosong diterima; tidak terjangkau handler"
+S20B,terbitkanUlang,124,balik kondisi,if (hashDokumenBaru == bytes32(0)) revert HashKosong();,tidak,>1,"terbitkan, cabut, lalu penerbitan ulang dengan hash bukan kosong ditolak"
+S21H,verifikasi,130,hapus pemeriksaan,if (_ownerOf(id) == address(0)) return Hasil.TidakTerdaftar;,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
+S21B,verifikasi,130,balik kondisi,if (_ownerOf(id) == address(0)) return Hasil.TidakTerdaftar;,ya,1,I7: verifikasi ID yang belum diterbitkan tidak menghasilkan tidak terdaftar
+S22H,verifikasi,132,hapus pemeriksaan,if (hashDiperiksa != d.hashNomor && hashDiperiksa != d.hashDokumen) return Hasil.TidakCocok;,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash lain dinyatakan cocok (sama dengan C9)"
+S22B,verifikasi,132,balik kondisi,if (hashDiperiksa != d.hashNomor && hashDiperiksa != d.hashDokumen) return Hasil.TidakCocok;,ya,>1,"I7: terbitkan, lalu verifikasi dengan hash yang benar dinyatakan tidak cocok"
+S23H,verifikasi,133,hapus pemeriksaan,if (d.dicabut) return Hasil.Dicabut;,ya,>1,"I7: terbitkan, cabut, lalu verifikasi tidak menghasilkan dicabut (sama dengan C8)"
+S23B,verifikasi,133,balik kondisi,if (d.dicabut) return Hasil.Dicabut;,ya,>1,"I7: terbitkan, lalu verifikasi token aktif menghasilkan dicabut"
+S24H,_update,148,hapus pemeriksaan,if (_ownerOf(tokenId) != address(0)) revert TokenTerkunci();,ya,>1,"I2: terbitkan, lalu token dipindahkan (sama dengan C2)"
+S24B,_update,148,balik kondisi,if (_ownerOf(tokenId) != address(0)) revert TokenTerkunci();,ya,1,I2: penerbitan pertama ditolak sehingga tidak ada token; tidak melanggar invariant
