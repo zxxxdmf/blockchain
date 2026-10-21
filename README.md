@@ -1,7 +1,7 @@
 # Eksperimen: Verifikasi Keaslian Ijazah Berbasis Soulbound Token dengan Stateful Fuzzing
 
-Repositori kode penelitian. Isi dan urutan kerja mengikuti BAB II naskah proposal
-(`PROPOSAL HASIL/DRAFT-PROPOSAL-HASIL_REVISI-<tanggal>.docx`). Data dan dokumen ijazah di sini fiktif.
+Repositori kode penelitian. Isi dan urutan kerja mengikuti BAB II (Metode Penelitian) naskah proposal.
+Data dan dokumen ijazah di sini fiktif.
 
 ## Peta folder terhadap prosedur (subbab 2.3)
 

@@ -25,6 +25,15 @@ Isi tabel ini setiap kali ada perubahan setelah penguncian.
 - 2026-10-11: koreksi golongan S05B dan S06B dari 1 menjadi gagal_disiapkan. Uji coba lokal menunjukkan setUp gagal
   pada 70 dari 70 kampanye (BukanAdmin, AlamatNol) karena setUp memanggil tetapkanPenerbit; analisis usulan
   melewatkan panggilan ini. Koreksi didasarkan pada kegagalan setUp sesuai definisi Tahap 4, bukan pada hasil deteksi.
+- 2026-10-21: komentar dibersihkan dari seluruh kode (src, test, script, otomasi, jalur_qr, halaman, uji_alat,
+  varian/buat_varian.py, foundry.toml, .gitignore, .env.example, requirements.txt), sebelum penguncian. Yang
+  dipertahankan: baris SPDX dan shebang. Pengecualian lint unsafe-oz-erc721-mint dipindah ke [lint] di foundry.toml.
+  Generator varian tidak lagi menyisipkan komentar; varian dibangkitkan ulang. Bukti perilaku tidak berubah:
+  bytecode dan ABI tanpa metadata identik untuk 58 kontrak (acuan + 57 varian) dan seluruh artefak forge; AST Python
+  identik (di luar docstring); unit test 33/33; cek_lingkungan.sh 23 OK; kontrol seed 1 (I1..I7, C1..C9, K1..K5)
+  identik dengan uji coba 2026-10-10 pada status, calls, dan panjang shrink. daftar.csv sistematis hanya berubah
+  pada kolom baris (nomor baris acuan bergeser, mis. S01 71 -> 57, S24 178 -> 148); ID, relevan, golongan tetap.
+  Versi berkomentar disimpan di luar repo: ../eksperimen_berkomentar/ (bahan belajar penulis).
 - Belum: commit penguncian setelah proposal disetujui.
 
 - 2026-10-09: folder eksperimen dibuat; versi alat sesuai Tabel 2.4 diperiksa dengan `cek_lingkungan.sh`.
