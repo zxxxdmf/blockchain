@@ -34,6 +34,13 @@ Isi tabel ini setiap kali ada perubahan setelah penguncian.
   identik dengan uji coba 2026-10-10 pada status, calls, dan panjang shrink. daftar.csv sistematis hanya berubah
   pada kolom baris (nomor baris acuan bergeser, mis. S01 71 -> 57, S24 178 -> 148); ID, relevan, golongan tetap.
   Versi berkomentar disimpan di luar repo: ../eksperimen_berkomentar/ (bahan belajar penulis).
+- 2026-10-21: dua kasus unit test ditambahkan, test_grantRole_P dan test_revokeRole_P, agar templat kategori alamat
+  tanpa peran berlaku untuk ketiga fungsi peran bawaan yang dinonaktifkan (sebelumnya hanya renounceRole). Kedua
+  fungsi itu tidak memiliki baris pemeriksaan yang dimutasi, sehingga hasil unit test pada 57 varian tidak berubah
+  (dibandingkan dengan uji coba 2026-10-10: status dan daftar kasus gagal identik). Kontrol negatif: tanpa
+  penonaktifan, kedua kasus gagal. Unit test kontrak acuan kini 35 kasus.
+- 2026-10-21: kontrol pra-penguncian diulang, I1..I7 x seed 1..10 = 70/70 lulus, unit test 35/35, Anvil 31/31
+  (hasil/pra_penguncian/2026-10-21/).
 - Belum: commit penguncian setelah proposal disetujui.
 
 - 2026-10-09: folder eksperimen dibuat; versi alat sesuai Tabel 2.4 diperiksa dengan `cek_lingkungan.sh`.
