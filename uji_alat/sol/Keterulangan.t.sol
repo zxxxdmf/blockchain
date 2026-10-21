@@ -1,6 +1,4 @@
 // SPDX-License-Identifier: MIT
-// UJI ALAT, bukan bagian penelitian: invariant yang SENGAJA gagal setelah tiga langkah berurutan,
-// untuk memeriksa apakah calls hingga pelanggaran pertama sama pada seed yang sama (pengaruh workers).
 pragma solidity 0.8.37;
 
 import {Test} from "forge-std/Test.sol";

@@ -1,12 +1,9 @@
 #!/bin/zsh
-# Gladi Tahap 7 di Anvil lokal: deploy + inisialisasi, penyiapan data QR code, cek kasus melalui cast, uji penolakan,
-# dan logika halaman verifikasi (kode yang sama dengan peramban). Bukan hasil penelitian: berkas keluaran dihapus
-# di akhir kecuali dijalankan dengan --simpan.
 set -e
 cd "$(dirname "$0")/.."
 RPC=http://127.0.0.1:8548
-K0=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80   # akun #0 bawaan Anvil: admin + penerbit
-K1=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d   # akun #1 bawaan Anvil: pemegang A
+K0=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+K1=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
 anvil --silent --port 8548 & PID=$!
 bersihkan() {
   kill $PID 2>/dev/null || true

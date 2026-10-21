@@ -1,19 +1,14 @@
-# keluaran Foundry
 out/
 cache/
 broadcast/*/31337/
-# rahasia: JANGAN di-commit
 .env
 *.key
 keystore/
-# lingkungan Python dan Node
 .venv/
 __pycache__/
 node_modules/
-# macOS
 .DS_Store
 
-# folder kerja otomasi (dibuat ulang setiap eksekusi)
 otomasi/_kerja/
 hasil/pra_penguncian/2026-10-10/mentah/
 hasil/pra_penguncian/2026-10-09/acuan/

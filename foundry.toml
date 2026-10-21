@@ -1,11 +1,10 @@
-# Konfigurasi mengikuti BAB II (subbab 2.2.1, Tabel 2.4; Tahap 5).
 [profile.default]
 src = "src"
 test = "test"
 script = "script"
 out = "out"
 libs = ["lib"]
-solc_version = "0.8.37"          # Tabel 2.4 baris 3
+solc_version = "0.8.37"
 auto_detect_solc = false
 remappings = [
   "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
@@ -13,23 +12,20 @@ remappings = [
 ]
 
 [invariant]
-runs = 256                        # Tahap 5: contoh konfigurasi dokumentasi Foundry
-depth = 100                       # 100 panggilan per run (anggaran 25.600 panggilan)
-check_interval = 1                # invariant diperiksa setiap panggilan
+runs = 256
+depth = 100
+check_interval = 1
 fail_on_revert = false
-workers = 1                       # satu pekerja agar durasi kampanye tidak dipengaruhi paralelisme
-                                  # (uji alat 2026-10-09: calls per seed identik untuk auto maupun 1)
-# shrink_run_limit diatur per eksekusi lewat FOUNDRY_INVARIANT_SHRINK_RUN_LIMIT:
-#   0 untuk eksekusi pertama (calls dan waktu), bawaan untuk eksekusi kedua (urutan terpendek).
-# Seed diatur per kampanye dengan --fuzz-seed 1 sampai 10.
-# Hapus cache/invariant sebelum setiap kampanye (lihat catatan/PANDUAN_EKSEKUSI.md).
+workers = 1
 
 [rpc_endpoints]
-sepolia = "${SEPOLIA_RPC_URL}"    # Infura (Tabel 2.4 baris 12), diisi di .env
+sepolia = "${SEPOLIA_RPC_URL}"
 
 [etherscan]
-sepolia = { key = "${ETHERSCAN_API_KEY}" }   # verifikasi kode sumber (Tabel 2.4 baris 13)
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
 
-# Uji alat (bukan bagian penelitian): FOUNDRY_PROFILE=ujialat forge test
 [profile.ujialat]
 test = "uji_alat/sol"
+
+[lint]
+exclude_lints = ["unsafe-oz-erc721-mint"]

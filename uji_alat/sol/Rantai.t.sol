@@ -1,6 +1,4 @@
 // SPDX-License-Identifier: MIT
-// UJI ALAT, bukan bagian penelitian: memastikan solc 0.8.37, OpenZeppelin v5.7.0, forge-std v1.17.0,
-// dan kontrak pembanding dapat dikompilasi serta dipanggil bersama.
 pragma solidity 0.8.37;
 
 import {Test} from "forge-std/Test.sol";

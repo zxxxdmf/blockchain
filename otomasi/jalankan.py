@@ -1,19 +1,3 @@
-"""Menjalankan setiap kampanye stateful fuzzing dan unit test secara berurutan, lalu mencatat hasilnya (Tahap 5).
-
-Satu kampanye = satu invariant x satu kontrak (acuan, varian, atau pembanding) x satu seed. Untuk setiap kampanye:
-  1. cache/invariant dihapus (Foundry memutar ulang kegagalan lama bila tidak dihapus);
-  2. eksekusi pertama TANPA shrinking (FOUNDRY_INVARIANT_SHRINK_RUN_LIMIT=0): status, runs, calls, durasi;
-  3. bila terdeteksi, eksekusi kedua DENGAN shrinking bawaan untuk urutan terpendek (dianalisis di Tahap 6).
-Varian dijalankan di folder kerja terpisah (otomasi/_kerja/<target>) sehingga src/ asli tidak pernah diubah.
-
-Pemakaian (dari folder eksperimen):
-  .venv/bin/python -I otomasi/jalankan.py acuan                 # I1..I7 x seed 1..10 (kontrol)
-  .venv/bin/python -I otomasi/jalankan.py terencana             # C1..C9 pada invariant sasarannya
-  .venv/bin/python -I otomasi/jalankan.py sistematis            # S..H/S..B pada ketujuh invariant
-  .venv/bin/python -I otomasi/jalankan.py pembanding            # K1..K5 x seed 1..10
-  .venv/bin/python -I otomasi/jalankan.py unit                  # unit test sekali pada setiap varian
-Opsi: --seed 1-3 | --target C1,C8 | --invariant I7 | --ulang (abaikan hasil yang sudah tercatat)
-"""
 import argparse
 import csv
 import datetime
@@ -37,10 +21,7 @@ KOLOM_KAMPANYE = ["kelompok", "target", "invariant", "seed", "status", "runs", "
 KOLOM_UNIT = ["target", "status", "jumlah_gagal", "tes_gagal", "berkas_mentah", "waktu"]
 
 
-# ------------------------------------------------------------------ persiapan folder kerja
-
 def siapkan_kerja(target: str, sumber: pathlib.Path) -> tuple[pathlib.Path, str]:
-    """Salin konfigurasi, test, dan kontrak target ke folder kerja; lib ditautkan. Kembalikan (folder, status)."""
     d = KERJA / target
     if d.exists():
         shutil.rmtree(d)
@@ -53,8 +34,6 @@ def siapkan_kerja(target: str, sumber: pathlib.Path) -> tuple[pathlib.Path, str]
     p = subprocess.run(["forge", "build"], cwd=d, capture_output=True, text=True)
     return d, ("ok" if p.returncode == 0 else "galat_kompilasi")
 
-
-# ------------------------------------------------------------------ eksekusi dan pembacaan keluaran forge
 
 def ke_ms(teks: str) -> float:
     satuan = {"s": 1000.0, "ms": 1.0, "µs": 1e-3, "us": 1e-3, "ns": 1e-6}
@@ -104,8 +83,6 @@ def baca_kampanye(hasil: dict) -> dict:
     return keluar
 
 
-# ------------------------------------------------------------------ pencatatan
-
 def baca_csv(p: pathlib.Path) -> list[dict]:
     return list(csv.DictReader(open(p))) if p.exists() else []
 
@@ -149,8 +126,6 @@ def kampanye(kelompok, target, cwd, jalur, inv, seed, sudah, csv_out):
     print(f"  {target:6s} {inv} seed {seed:2d}: {r1['status']:11s} calls={r1.get('calls', '')} "
           f"durasi={r1.get('durasi_ms', '')} ms shrink={shrink}")
 
-
-# ------------------------------------------------------------------ daftar target
 
 def daftar_varian(kelompok: str) -> list[dict]:
     p = AKAR / "varian" / kelompok / "daftar.csv"
@@ -223,7 +198,6 @@ def main() -> None:
             print(f"  {target:6s}: {st} ({len(gagal)} kasus gagal)")
         return
 
-    # terencana: hanya invariant sasaran; sistematis: ketujuh invariant
     for v in daftar_varian(a.kelompok):
         if pilih_target and v["target"] not in pilih_target:
             continue

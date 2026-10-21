@@ -1,12 +1,3 @@
-"""Percobaan transfer token dan penerbitan oleh alamat tanpa peran dikirim melalui cast untuk memastikan keduanya
-ditolak di jaringan publik (Tahap 7). Transaksi dipaksa masuk blok dengan batas gas tetap, karena tanpa itu cast
-menolak di tahap estimasi gas dan transaksi tidak pernah terkirim. Status 0 = ditolak kontrak.
-
-Penandatangan adalah akun pemegang ijazah A (pemilik token yang mencoba memindahkannya, sekaligus alamat tanpa peran
-penerbit). Akun ini perlu sedikit ETH Sepolia untuk biaya gas.
-Keluaran: hasil/mentah/qr_penolakan.csv
-Pemakaian: .venv/bin/python -I jalur_qr/uji_penolakan.py --akun-pemegang pemegang   (atau --kunci-pemegang untuk Anvil)
-"""
 import argparse
 import csv
 import json

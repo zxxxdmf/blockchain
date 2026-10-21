@@ -5,15 +5,10 @@ import {Test} from "forge-std/Test.sol";
 import {DocumentVerification} from "src/pembanding/DocumentVerification.sol";
 import {DataSintetis as D} from "test/DataSintetis.sol";
 
-/// @title Handler kontrak pembanding (subbab 2.1, Tabel 2.2)
-/// @notice Nilai acak forge dipetakan ke tiga alamat tanpa peran, ke sepuluh hash dokumen sintetis ditambah hash
-///         kosong, dan ke CID fiktif ditambah CID kosong. Variabel bayangan mencatat hash yang sudah diterima
-///         beserta CID, pendaftar, dan waktunya, serta menghitung pendaftaran yang seharusnya ditolak tetapi
-///         diterima kontrak.
 contract HandlerPembanding is Test {
     DocumentVerification public immutable dv;
     address[3] public aktor;
-    uint256 public constant JUMLAH_HASH = D.JUMLAH + 1; // sepuluh hash dokumen + hash kosong
+    uint256 public constant JUMLAH_HASH = D.JUMLAH + 1;
 
     struct Catatan {
         bool diterima;
@@ -23,9 +18,9 @@ contract HandlerPembanding is Test {
     }
 
     mapping(bytes32 => Catatan) internal _catatan;
-    uint256 public diterimaHashKosong; // K1
-    uint256 public diterimaCidKosong; // K2
-    uint256 public diterimaGanda; // K3
+    uint256 public diterimaHashKosong;
+    uint256 public diterimaCidKosong;
+    uint256 public diterimaGanda;
 
     constructor(DocumentVerification dv_) {
         dv = dv_;
@@ -56,7 +51,6 @@ contract HandlerPembanding is Test {
         } catch {}
     }
 
-    /// @notice Memajukan waktu agar data waktu pendaftaran bervariasi (K4).
     function majukanWaktu(uint256 detik) external {
         vm.warp(block.timestamp + bound(detik, 1, 1 days));
     }

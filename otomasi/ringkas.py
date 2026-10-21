@@ -1,25 +1,3 @@
-"""Mengolah hasil eksekusi menjadi tabel analisis deskriptif (Tahap 5, 6, dan 8).
-
-Masukan : hasil/olahan/kampanye.csv, hasil/olahan/unit.csv, varian/*/daftar.csv, hasil/mentah/**/_shrink.json
-Keluaran (hasil/olahan/):
-  kontrol_acuan.csv         ringkasan kontrak acuan per invariant (harus lulus semua; pelanggaran = pelanggaran palsu)
-  ringkasan_varian.csv      per varian: seed yang mendeteksi (mis. 9 dari 10), median/min/maks calls dan durasi dari
-                            seed yang mendeteksi, persen anggaran 25.600, panjang urutan shrink, kecocokan dengan
-                            golongan, hasil unit test, dan apakah varian ikut perhitungan utama
-  varian_terpisah.csv       varian golongan tanpa_pemicu dan gagal_disiapkan (disajikan terpisah, Tahap 4)
-  efektivitas_per_seed.csv  jumlah varian terdeteksi per kelompok per seed (hanya perhitungan utama; sistematis dalam
-                            versi semua dan relevan)
-  perbandingan_golongan.csv per golongan dan kriteria (10 seed / minimal 1 seed): kedua cara, hanya stateful fuzzing,
-                            hanya unit test, tidak terdeteksi
-  calls_per_golongan.csv    jumlah panggilan hingga pelanggaran pertama per golongan, juga sebagai persen anggaran
-  pelanggaran.csv           Tahap 6: invariant yang dilanggar, kontrak penyebab, panjang dan isi urutan setelah shrinking
-  pembanding.csv            hasil K1..K5 per seed
-Aturan: seed yang tidak mendeteksi tidak diisi angka batas 25.600. Untuk varian sistematis, calls dan durasi suatu seed
-diambil dari invariant yang paling cepat melanggar pada seed tersebut. Panjang urutan shrink adalah batas atas (shrinking
-hanya membuang panggilan dari urutan yang gagal), sehingga perbedaan dengan golongan dilaporkan tanpa mengubah golongan.
-
-Pemakaian: .venv/bin/python -I otomasi/ringkas.py
-"""
 import csv
 import json
 import pathlib
@@ -56,14 +34,12 @@ def mmm(nilai):
     return round(st.median(nilai), 3), min(nilai), max(nilai)
 
 
-AKTOR = ["admin", "penerbit", "pemegangA", "pemegangB", "penyerang"]  # urutan aktor di setUp invariant test
+AKTOR = ["admin", "penerbit", "pemegangA", "pemegangB", "penyerang"]
 PEMEGANG = ["pemegangA", "pemegangB"]
-PENGGUNA = ["pengguna1", "pengguna2", "pengguna3"]  # handler kontrak pembanding
+PENGGUNA = ["pengguna1", "pengguna2", "pengguna3"]
 
 
 def terjemahkan(fungsi: str, raw: str) -> str:
-    """Menerjemahkan argumen acak handler menjadi aktor dan data, dengan aturan pemetaan yang sama seperti handler.
-    ID token tidak diterjemahkan karena bergantung pada keadaan (nilai acak mod idBerikutnya + 1)."""
     try:
         a = [x.strip() for x in raw.split(",")] if raw else []
         n = [int(x) if x.lstrip("-").isdigit() else x for x in a]
@@ -96,7 +72,6 @@ def terjemahkan(fungsi: str, raw: str) -> str:
 
 
 def urutan_shrink(berkas_mentah: str) -> tuple[int | str, str]:
-    """Panjang dan isi urutan dari keluaran eksekusi kedua (dengan shrinking)."""
     p = AKAR / berkas_mentah.replace(".json", "_shrink.json")
     if not p.exists():
         return "", ""
@@ -119,7 +94,6 @@ def main():
     for b in baca(AKAR / "varian" / "sistematis" / "daftar.csv"):
         meta[b["id"]] = {"kelompok": "sistematis", "golongan": b["golongan"], "relevan": b["relevan"], "sasaran": ""}
 
-    # ---------------------------------------------------------------- kontrol kontrak acuan
     kontrol = defaultdict(lambda: {"lulus": 0, "jumlah": 0, "pelanggaran": []})
     for b in kampanye:
         if b["kelompok"] == "acuan":
@@ -133,7 +107,6 @@ def main():
     if any(k["pelanggaran"] for k in kontrol.values()):
         print("  PERINGATAN: kontrak acuan melanggar invariant -> periksa invariant/handler (pelanggaran palsu)")
 
-    # ---------------------------------------------------------------- per varian
     per_seed = defaultdict(lambda: defaultdict(list))
     status_varian = defaultdict(set)
     for b in kampanye:
@@ -174,7 +147,6 @@ def main():
     tulis("varian_terpisah.csv", [r for r in ringkasan if r["perhitungan"] == "terpisah"])
     utama = [r for r in ringkasan if r["perhitungan"] == "utama"]
 
-    # ---------------------------------------------------------------- efektivitas per seed (perhitungan utama)
     eff = []
     for kel, versi in (("terencana", "semua"), ("sistematis", "semua"), ("sistematis", "relevan")):
         anggota = [r["target"] for r in utama if r["kelompok"] == kel and (versi == "semua" or r["relevan"] == "ya")]
@@ -184,7 +156,6 @@ def main():
                         "jumlah_varian": len(anggota)})
     tulis("efektivitas_per_seed.csv", eff)
 
-    # ---------------------------------------------------------------- perbandingan per golongan
     banding = []
     for kel, versi in (("terencana", "semua"), ("sistematis", "semua"), ("sistematis", "relevan")):
         for gol in ("1", ">1"):
@@ -202,7 +173,6 @@ def main():
                                 "hanya_unit_test": hit["hanya_unit_test"], "tidak_terdeteksi": hit["tidak_terdeteksi"]})
     tulis("perbandingan_golongan.csv", banding)
 
-    # ---------------------------------------------------------------- calls per golongan
     cpg = []
     for kel in ("terencana", "sistematis"):
         for gol in ("1", ">1"):
@@ -213,7 +183,6 @@ def main():
                         "persen_anggaran_median": round(100 * med / ANGGARAN, 3) if nilai else ""})
     tulis("calls_per_golongan.csv", cpg)
 
-    # ---------------------------------------------------------------- tabel pelanggaran (Tahap 6)
     langgar = []
     for b in kampanye:
         if b["status"] != "terdeteksi":

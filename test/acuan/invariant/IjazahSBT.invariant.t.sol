@@ -6,9 +6,6 @@ import {IjazahSBT} from "src/IjazahSBT.sol";
 import {DataSintetis as D} from "test/DataSintetis.sol";
 import {HandlerIjazah} from "test/acuan/invariant/HandlerIjazah.sol";
 
-/// @title Invariant I1 sampai I7 kontrak acuan (Tabel 2.1)
-/// @notice Setiap invariant dijalankan sebagai kampanye terpisah: --match-test '^invariant_I<n>$'.
-///         I2, I4, I6, dan I7 memuat lebih dari satu bagian; setiap bagian memakai assert dengan pesan sendiri.
 contract IjazahSBTInvariantTest is Test {
     IjazahSBT ijazah;
     HandlerIjazah handler;
@@ -42,12 +39,10 @@ contract IjazahSBTInvariantTest is Test {
         return ijazah.idBerikutnya() - 1;
     }
 
-    /// I1: setiap token baru, termasuk token pengganti, hanya diterbitkan oleh alamat berperan penerbit.
     function invariant_I1() public view {
         assertEq(_jumlahToken(), handler.jumlahTerbitSah(), "I1: ada token yang diterbitkan selain oleh penerbit");
     }
 
-    /// I2: pemilik token tidak pernah berubah setelah diterbitkan dan locked selalu bernilai benar.
     function invariant_I2() public view {
         for (uint256 id = 1; id <= _jumlahToken(); ++id) {
             address awal = handler.pemilikAwal(id);
@@ -57,7 +52,6 @@ contract IjazahSBTInvariantTest is Test {
         }
     }
 
-    /// I3: status dicabut hanya dapat ditetapkan oleh alamat berperan penerbit.
     function invariant_I3() public view {
         for (uint256 id = 1; id <= _jumlahToken(); ++id) {
             (,, bool dicabut) = ijazah.dataToken(id);
@@ -65,8 +59,6 @@ contract IjazahSBTInvariantTest is Test {
         }
     }
 
-    /// I4: token yang dicabut tidak pernah aktif kembali; data ijazahnya hanya dapat aktif lagi melalui token
-    ///     pengganti yang diterbitkan penerbit.
     function invariant_I4() public view {
         for (uint256 id = 1; id <= _jumlahToken(); ++id) {
             (bytes32 hn,, bool dicabut) = ijazah.dataToken(id);
@@ -80,7 +72,6 @@ contract IjazahSBTInvariantTest is Test {
         }
     }
 
-    /// I5: setiap data ijazah memiliki paling banyak satu token aktif.
     function invariant_I5() public view {
         uint256 n = _jumlahToken();
         for (uint256 k; k < D.JUMLAH; ++k) {
@@ -94,8 +85,6 @@ contract IjazahSBTInvariantTest is Test {
         }
     }
 
-    /// I6: daftar penerbit dan admin hanya berubah melalui alamat berperan admin, setelah admin pertama
-    ///     ditetapkan satu kali saat inisialisasi.
     function invariant_I6() public view {
         bytes32 adm = ijazah.DEFAULT_ADMIN_ROLE();
         bytes32 pen = ijazah.PENERBIT();
@@ -111,7 +100,6 @@ contract IjazahSBTInvariantTest is Test {
         assertEq(handler.inisialisasiUlangBerhasil(), 0, "I6c: inisialisasi dapat dipanggil lebih dari satu kali");
     }
 
-    /// I7: fungsi verifikasi selalu memberi salah satu dari empat hasil sesuai data dan status token saat itu.
     function invariant_I7() public view {
         assertEq(handler.salahVerifikasi(0), 0, "I7a: seharusnya tidak terdaftar");
         assertEq(handler.salahVerifikasi(1), 0, "I7b: seharusnya tidak cocok");

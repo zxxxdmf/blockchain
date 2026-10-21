@@ -1,14 +1,10 @@
-"""UJI ALAT, bukan bagian penelitian: rantai jalur QR code (Tahap 7).
-1) QR code berisi ID token + tautan dibuat dengan qrcode; 2) PDF dibuat dua kali dengan reportlab invariant=1
-dan harus identik; 3) hash keccak256 berkas dan nomor ijazah (setelah diseragamkan) dihitung dengan cast dan
-ethers.js dan harus sama. Pemakaian: .venv/bin/python -I uji_alat/cek_rantai_qr.py"""
 import pathlib, subprocess, tempfile
 import qrcode
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 
 AKAR = pathlib.Path(__file__).resolve().parent.parent
-TAUTAN = "https://contoh.github.io/verifikasi/?token=1"   # tautan contoh; yang asli ditentukan setelah GitHub Pages siap
+TAUTAN = "https://contoh.github.io/verifikasi/?token=1"
 
 
 def buat_pdf(jalur, nomor, nama):
@@ -34,7 +30,7 @@ def ethers(jenis, nilai):
                           text=True, check=True, cwd=AKAR).stdout.strip()
 
 
-seragam = lambda n: n.strip().upper()          # 2.2.2: hapus spasi tepi, huruf kapital
+seragam = lambda n: n.strip().upper()
 ok = True
 with tempfile.TemporaryDirectory() as d:
     a, b = pathlib.Path(d, "a.pdf"), pathlib.Path(d, "b.pdf")

@@ -1,12 +1,3 @@
-"""Hasil yang diharapkan Tabel 2.7 dibandingkan dengan pemanggilan fungsi verifikasi melalui cast (Tahap 7).
-
-Untuk setiap kasus dan setiap jenis masukan (nomor ijazah, berkas PDF) hash dihitung seperti di halaman verifikasi,
-lalu verifikasi(id token pada QR code, hash) dipanggil langsung. Kolom `ditampilkan_halaman` dan `tangkapan_layar`
-diisi penulis setelah menjalankan kasus yang sama dari ponsel; kasus sesuai bila kategori di halaman sama dengan
-hasil yang diharapkan.
-Keluaran: hasil/olahan/qr_kasus.csv
-Pemakaian: .venv/bin/python -I jalur_qr/cek_kasus.py [--rpc ...]
-"""
 import argparse
 import csv
 import json

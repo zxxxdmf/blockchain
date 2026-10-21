@@ -1,6 +1,3 @@
-// Uji otomatis logika halaman verifikasi dengan kode yang sama dengan peramban (verifikasi.js) terhadap kontrak
-// yang sudah disiapkan jalur_qr/siapkan_data.py. Hash dihitung dari berkas PDF dan nomor pada manifest.
-// Pemakaian: node halaman/uji_logika.js <rpc>
 import { readFileSync } from "node:fs";
 import * as ethers from "ethers";
 import { hashBerkas, hashNomor, idDariTautan, verifikasi } from "./verifikasi.js";
@@ -13,7 +10,7 @@ for (const k of m.kasus) {
   const d = m.dokumen[k.berkas];
   const idToken = idDariTautan(`?token=${d.id_token}`);
   for (const masukan of k.masukan) {
-    const hash = masukan === "nomor" ? hashNomor(ethers, `  ${d.nomor.toLowerCase()} `) // uji penyeragaman
+    const hash = masukan === "nomor" ? hashNomor(ethers, `  ${d.nomor.toLowerCase()} `)
                                      : hashBerkas(ethers, new Uint8Array(readFileSync(new URL(k.berkas, dir))));
     const r = await verifikasi(ethers, { rpc, kontrak: m.kontrak, idToken, hash });
     const ok = r.kategori === k.diharapkan;

@@ -1,6 +1,4 @@
 #!/bin/zsh
-# Pemeriksa kelengkapan lingkungan eksperimen terhadap Tabel 2.3 dan Tabel 2.4 naskah.
-# Tidak pernah mencetak isi .env atau kunci. Pemakaian: ./cek_lingkungan.sh
 cd "$(dirname "$0")"
 OK=0; KURANG=0
 ok()     { print -P "  %F{green}OK%f      $1"; OK=$((OK+1)); }

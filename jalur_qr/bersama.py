@@ -1,9 +1,3 @@
-"""Fungsi bersama jalur QR code (Tahap 7): pemanggilan cast, pembuatan QR code dan PDF ijazah fiktif, hash.
-
-Hash nomor ijazah dan hash berkas PDF dihitung dengan keccak256 melalui cast, sama dengan ethers.js di halaman
-verifikasi. Nomor ijazah diseragamkan (hapus spasi tepi, huruf kapital) sebelum di-hash.
-PDF dibuat dengan reportlab invariant=1 agar berkas yang dibuat ulang dari data sama identik.
-"""
 import json
 import os
 import pathlib
@@ -16,7 +10,7 @@ from reportlab.pdfgen import canvas
 
 AKAR = pathlib.Path(__file__).resolve().parent.parent
 DOKUMEN = AKAR / "jalur_qr" / "dokumen"
-KATEGORI = {0: "palsu", 1: "palsu", 2: "tidak berlaku", 3: "asli"}  # TidakTerdaftar, TidakCocok, Dicabut, Aktif
+KATEGORI = {0: "palsu", 1: "palsu", 2: "tidak berlaku", 3: "asli"}
 
 
 def baca_env() -> dict:
@@ -31,7 +25,6 @@ def baca_env() -> dict:
 
 
 class Cast:
-    """Pembungkus cast. Penandatangan: --private-key (uji lokal Anvil) atau --account keystore (Sepolia)."""
 
     def __init__(self, rpc: str, kontrak: str = "", kunci: str = "", akun: str = "", sandi_file: str = ""):
         self.rpc, self.kontrak = rpc, kontrak
@@ -51,7 +44,7 @@ class Cast:
     def send(self, sig: str, *arg: str, gas_limit: int | None = None, tanda: list[str] | None = None) -> dict:
         args = ["send", self.kontrak, sig, *arg, "--rpc-url", self.rpc, "--json", *(tanda or self.tanda)]
         if gas_limit:
-            args += ["--gas-limit", str(gas_limit)]  # memaksa transaksi masuk blok walau akan ditolak kontrak
+            args += ["--gas-limit", str(gas_limit)]
         r = json.loads(self._jalankan(args))
         return {"tx": r["transactionHash"], "status": int(r["status"], 16), "blok": int(r["blockNumber"], 16)}
 
@@ -70,7 +63,6 @@ def seragamkan(nomor: str) -> str:
 
 
 def buat_pdf(nama_berkas: str, nomor: str, nama: str, tautan_qr: str) -> pathlib.Path:
-    """PDF ijazah fiktif: tanda fiktif, nomor, nama, dan QR code berisi tautan halaman verifikasi + ID token."""
     DOKUMEN.mkdir(parents=True, exist_ok=True)
     p = DOKUMEN / nama_berkas
     c = canvas.Canvas(str(p), pagesize=A4, invariant=1)
@@ -96,7 +88,6 @@ def tautan(url_halaman: str, id_token: int) -> str:
 
 
 def alamat_dari_teks(teks: str) -> str:
-    """Alamat fiktif deterministik (tanpa kunci) untuk pemegang yang tidak perlu menandatangani transaksi."""
     return "0x" + keccak_teks(teks)[-40:]
 
 

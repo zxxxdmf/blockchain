@@ -1,16 +1,9 @@
-"""Tahap 2: kontrak acuan di-deploy ke Anvil lokal dan dipanggil melalui cast untuk memastikan perilakunya sesuai
-dengan aturan pada Tabel 2.1 (I1 sampai I7). Setiap panggilan yang harus ditolak dikirim dengan batas gas tetap agar
-benar-benar masuk blok, sehingga statusnya (0 = ditolak) dapat dicatat.
-Dijalankan oleh script/cek_aturan_anvil.sh (yang menyalakan Anvil dan men-deploy kontrak).
-Pemakaian langsung: .venv/bin/python -I script/cek_aturan_anvil.py <rpc> <alamat kontrak>
-"""
 import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "jalur_qr"))
-from bersama import Cast, keccak_teks  # noqa: E402
+from bersama import Cast, keccak_teks
 
-# akun bawaan Anvil (kunci uji publik, bukan akun penelitian)
 KUNCI = {"admin": "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
          "pemegang": "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d",
          "penyerang": "0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a"}
@@ -45,7 +38,7 @@ def main(rpc, kontrak):
     pemegang, penyerang, admin = ALAMAT["pemegang"], ALAMAT["penyerang"], ALAMAT["admin"]
 
     kirim("I1", "penyerang", "terbitkan(address,bytes32,bytes32)", penyerang, hn, hd, harus="ditolak")
-    kirim("I1", "admin", "terbitkan(address,bytes32,bytes32)", pemegang, hn, hd, harus="diterima")  # admin juga penerbit
+    kirim("I1", "admin", "terbitkan(address,bytes32,bytes32)", pemegang, hn, hd, harus="diterima")
     periksa("I2", "ownerOf(1)", "ownerOf(uint256)(address)", "1", harus=pemegang)
     periksa("I2", "locked(1)", "locked(uint256)(bool)", "1", harus="true")
     kirim("I2", "pemegang", "transferFrom(address,address,uint256)", pemegang, penyerang, "1", harus="ditolak")

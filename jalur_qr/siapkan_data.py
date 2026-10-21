@@ -1,18 +1,3 @@
-"""Penyiapan data pengujian jalur QR code (Tahap 7), dijalankan berurutan.
-
-Untuk tiga ijazah fiktif (A, B, C): baca ID token berikutnya, buat QR code berisi ID itu dan tautan halaman
-verifikasi, muat dalam PDF bersama nomor ijazah dan nama fiktif, lalu terbitkan token dengan hash nomor ijazah
-dan hash berkas PDF. Setelah ketiga token terbit: B dicabut tanpa penggantian; C dicabut lalu diterbitkan ulang
-(token lama + token pengganti dengan PDF dan QR code baru). Disiapkan juga tiga dokumen uji tambahan:
-  D5 berkas PDF bernomor ijazah lain yang ditempeli QR code milik ijazah aktif A,
-  D6 berkas PDF dengan QR code berisi ID token yang tidak pernah diterbitkan,
-  D7 salinan PDF ijazah aktif A yang nama fiktifnya diubah (QR code tetap).
-Keluaran: jalur_qr/dokumen/*.pdf, jalur_qr/dokumen/manifest.json, hasil/mentah/qr_transaksi.csv
-
-Contoh (Sepolia):  .venv/bin/python -I jalur_qr/siapkan_data.py --kontrak 0x... --akun penerbit \
-                     --url-halaman https://<pengguna>.github.io/<repo>/halaman --pemegang-a 0x<alamat akun pemegang>
-Contoh (Anvil)  :  ... --rpc http://127.0.0.1:8545 --kunci <kunci anvil> ...
-"""
 import argparse
 import csv
 import json
@@ -73,7 +58,6 @@ def main():
     catat(f"cabut C (token {id_c})", cast.send("cabut(uint256)", str(id_c)))
     id_c2 = terbitkan("C", "C_pengganti.pdf", ulang_dari=id_c)
 
-    # dokumen uji tambahan (tidak ada transaksi)
     def tambahan(nama_berkas, nomor, nama, id_qr):
         pdf = buat_pdf(nama_berkas, nomor, nama, tautan(a.url_halaman, id_qr))
         dok[nama_berkas] = {"id_token": id_qr, "nomor": nomor, "nama": nama,
@@ -83,7 +67,6 @@ def main():
     tambahan("D6_id_tidak_terbit.pdf", NOMOR_D6, "Mahasiswa Fiktif D", ID_TIDAK_PERNAH_TERBIT)
     tambahan("D7_nama_diubah.pdf", IJAZAH["A"][0], "Mahasiswa Fiktif Z", id_a)
 
-    # Tabel 2.7: (no, kasus, berkas, masukan yang diuji, hasil yang diharapkan)
     kasus = [
         (1, "ijazah aktif", "A_aktif.pdf", ["nomor", "pdf"], "asli"),
         (2, "ijazah yang dicabut tanpa penggantian", "B_dicabut.pdf", ["nomor", "pdf"], "tidak berlaku"),

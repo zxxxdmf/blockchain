@@ -5,26 +5,6 @@ import {Test} from "forge-std/Test.sol";
 import {IjazahSBT} from "src/IjazahSBT.sol";
 import {DataSintetis as D} from "test/DataSintetis.sol";
 
-/// @title Unit test berskenario tetap (Tahap 2)
-/// @notice Disusun dari templat tetap: satu kasus untuk setiap kategori pada setiap fungsi di Tabel 2.1.
-///         Kategori mengikuti pola skenario Bimantoro et al. (2026) ditambah alamat tanpa peran:
-///           B  = kasus berhasil          V = data tidak valid       G = data ganda
-///           T  = data yang tidak dikenal P = alamat tanpa peran
-///         Kategori yang tidak berlaku untuk suatu fungsi ditandai "-" dan tidak dibuat kasusnya.
-///         Setiap kasus hanya memeriksa akibat langsung dari fungsi yang diuji.
-///
-///         Fungsi                 B  V  G  T  P
-///         terbitkan              x  x  x  -  x
-///         terbitkanUlang         x  x  x  x  x
-///         cabut                  x  -  x  x  x
-///         transfer (terkunci)    x  x  -  x  x
-///         inisialisasi           x  x  x  -  -
-///         gantiAdmin             x  x  -  -  x
-///         tetapkanPenerbit       x  x  -  -  x
-///         hapusPenerbit          x  -  -  x  x
-///         renounceRole           -  -  -  -  x
-///         verifikasi             x  x  -  x  -
-/// @dev    Kode ini dikunci bersama invariant dan handler (Tahap 3) sebelum varian cacat disusun.
 contract IjazahSBTUnitTest is Test {
     IjazahSBT ijazah;
     address admin = makeAddr("admin");
@@ -49,7 +29,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.cabut(id);
     }
 
-    // ---------------------------------------------------------------- terbitkan
     function test_terbitkan_B() public {
         uint256 id = _terbitkan(0);
         assertEq(ijazah.ownerOf(id), pemegang);
@@ -78,7 +57,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.terbitkan(penyerang, D.hashNomor(0), D.hashDokumen(0));
     }
 
-    // ---------------------------------------------------------------- terbitkanUlang
     function test_terbitkanUlang_B() public {
         uint256 lama = _terbitkan(0);
         _cabut(lama);
@@ -123,7 +101,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.terbitkanUlang(lama, penyerang, D.hashDokumenPengganti(0, 1));
     }
 
-    // ---------------------------------------------------------------- cabut
     function test_cabut_B() public {
         uint256 id = _terbitkan(0);
         _cabut(id);
@@ -152,7 +129,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.cabut(id);
     }
 
-    // ---------------------------------------------------------------- transfer (ERC-5192)
     function test_transfer_B() public {
         uint256 id = _terbitkan(0);
         assertTrue(ijazah.locked(id));
@@ -181,7 +157,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.transferFrom(pemegang, penyerang, id);
     }
 
-    // ---------------------------------------------------------------- inisialisasi
     function test_inisialisasi_B() public {
         IjazahSBT baru = new IjazahSBT();
         baru.inisialisasi(admin);
@@ -200,7 +175,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.inisialisasi(penyerang);
     }
 
-    // ---------------------------------------------------------------- gantiAdmin
     function test_gantiAdmin_B() public {
         address adminBaru = makeAddr("adminBaru");
         vm.prank(admin);
@@ -221,7 +195,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.gantiAdmin(penyerang);
     }
 
-    // ---------------------------------------------------------------- tetapkanPenerbit
     function test_tetapkanPenerbit_B() public {
         address p2 = makeAddr("penerbit2");
         vm.prank(admin);
@@ -241,7 +214,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.tetapkanPenerbit(penyerang);
     }
 
-    // ---------------------------------------------------------------- hapusPenerbit
     function test_hapusPenerbit_B() public {
         vm.prank(admin);
         ijazah.hapusPenerbit(penerbit);
@@ -262,7 +234,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.hapusPenerbit(penerbit);
     }
 
-    // ---------------------------------------------------------------- renounceRole (dinonaktifkan)
     function test_renounceRole_P() public {
         bytes32 peran = ijazah.PENERBIT();
         vm.prank(penerbit);
@@ -270,7 +241,6 @@ contract IjazahSBTUnitTest is Test {
         ijazah.renounceRole(peran, penerbit);
     }
 
-    // ---------------------------------------------------------------- verifikasi
     function test_verifikasi_B() public {
         uint256 id = _terbitkan(0);
         assertEq(uint256(ijazah.verifikasi(id, D.hashNomor(0))), uint256(IjazahSBT.Hasil.Aktif));
