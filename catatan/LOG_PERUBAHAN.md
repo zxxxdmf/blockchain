@@ -7,7 +7,13 @@ Isi tabel ini setiap kali ada perubahan setelah penguncian.
 |---|---|---|---|---|
 
 ## Penguncian
-- Commit penguncian: (diisi akhir Oktober setelah kontrak acuan lulus seed 1 sampai 10)
+- 2026-10-28: commit penguncian adalah commit bertag `penguncian`. Kode pengujian di dalamnya sama dengan commit
+  5132b57, yang lulus kontrol pra-penguncian 2026-10-21 (I1..I7 x seed 1..10 = 70/70, unit test 35/35, Anvil 31/31).
+  Proposal telah disetujui dan tidak ada catatan penguji yang mengubah kode. Pemeriksaan ulang lingkungan pada
+  2026-10-28 dengan `cek_lingkungan.sh`: versi perangkat lunak sesuai Tabel 2.4 (24 OK; 4 KURANG hanya konfigurasi
+  Sepolia untuk Tahap 7, yaitu .env, keystore penerbit, dan halaman/config.js, yang bukan kode pengujian).
+- Sejak commit ini, kode pengujian hanya diubah pada dua keadaan di atas. Lingkungan dibekukan sampai eksekusi
+  selesai: tanpa `foundryup`, `brew upgrade`, pembaruan macOS, atau `forge fmt`.
 
 ## Persiapan (sebelum penguncian)
 - 2026-10-09: kode penelitian ditulis (kontrak acuan, unit test, handler + I1..I7, K1..K5, generator varian, otomasi,
@@ -41,6 +47,5 @@ Isi tabel ini setiap kali ada perubahan setelah penguncian.
   penonaktifan, kedua kasus gagal. Unit test kontrak acuan kini 35 kasus.
 - 2026-10-21: kontrol pra-penguncian diulang, I1..I7 x seed 1..10 = 70/70 lulus, unit test 35/35, Anvil 31/31
   (hasil/pra_penguncian/2026-10-21/).
-- Belum: commit penguncian setelah proposal disetujui.
 
 - 2026-10-09: folder eksperimen dibuat; versi alat sesuai Tabel 2.4 diperiksa dengan `cek_lingkungan.sh`.
