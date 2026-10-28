@@ -1,0 +1,19 @@
+Keterulangan eksekusi resmi Tahap 5 (3570 kampanye) terhadap uji coba pra-penguncian
+Kunci pembanding: kelompok, target, invariant, seed. Kolom: status, calls, panjang_urutan_shrink.
+
+== uji coba 2026-10-10
+   berkas: /Users/fzl/proposalnew/eksperimen/hasil/pra_penguncian/2026-10-10/kampanye.csv
+   dibandingkan 3570, berbeda pada sedikitnya satu kolom: 43 (1.2%)
+     beda status                : 0
+     beda calls                 : 33
+     beda panjang_urutan_shrink : 21
+   per kelompok: sistematis 37, terencana 6
+
+== uji coba 2026-10-25 (~/block)
+   berkas: /Users/fzl/block/hasil/olahan/kampanye.csv
+   dibandingkan 3570, berbeda pada sedikitnya satu kolom: 44 (1.2%)
+     beda status                : 1
+     beda calls                 : 28
+     beda panjang_urutan_shrink : 28
+   per kelompok: sistematis 35, terencana 9
+   STATUS sistematis S14H I5 seed 6: lulus -> terdeteksi
