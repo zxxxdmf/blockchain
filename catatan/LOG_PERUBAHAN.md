@@ -15,6 +15,13 @@ Isi tabel ini setiap kali ada perubahan setelah penguncian.
 - Sejak commit ini, kode pengujian hanya diubah pada dua keadaan di atas. Lingkungan dibekukan sampai eksekusi
   selesai: tanpa `foundryup`, `brew upgrade`, pembaruan macOS, atau `forge fmt`.
 
+## Perubahan bukan kode pengujian (setelah penguncian)
+- 2026-10-30: `halaman/config.js` diisi RPC Infura Sepolia dan alamat kontrak acuan hasil deploy Tahap 7
+  (0xcE5b35c89c749De5AD245C15ea9016951d1156F3). Berkas ini konfigurasi halaman verifikasi, bukan kode pengujian;
+  logika halaman (index.html, verifikasi.js) tidak berubah. Catatan transaksi deploy Sepolia dari forge
+  (`broadcast/DeployIjazah.s.sol/11155111/`) ditambahkan ke repositori. Rincian deploy di
+  `hasil/olahan/CATATAN_TAHAP7.md`.
+
 ## Persiapan (sebelum penguncian)
 - 2026-10-09: kode penelitian ditulis (kontrak acuan, unit test, handler + I1..I7, K1..K5, generator varian, otomasi,
   jalur QR code, halaman verifikasi). Uji coba alat: kontrol lulus I1..I7 seed 1..3; C1..C9 terdeteksi pada invariant
