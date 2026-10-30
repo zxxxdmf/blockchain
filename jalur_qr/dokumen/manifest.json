@@ -1,0 +1,137 @@
+{
+  "kontrak": "0xce5b35c89c749de5ad245c15ea9016951d1156f3",
+  "url_halaman": "https://zxxxdmf.github.io/blockchain/halaman",
+  "pemegang": {
+    "A": "0x78e53085306511926Db871898E23d9f02f818bbd",
+    "B": "0x9575881eaf04ab4b4ade1388ca4b57dd6b31e8df",
+    "C": "0x7bfb906d4c2b3c480c98c15b847c5d36376cde03"
+  },
+  "dokumen": {
+    "A_aktif.pdf": {
+      "id_token": 1,
+      "nomor": "IJZ-FIKTIF-2026-101",
+      "nama": "Mahasiswa Fiktif A",
+      "hash_nomor": "0x89add3d80583a36c38575e25fd58a2124100680f80968c9002cbb63bf96ac7c3",
+      "hash_pdf": "0xc249b6519a470d5319d3b6ccda3679fc7984e7b245c7cbb6fc4fff988db9e6e1"
+    },
+    "B_dicabut.pdf": {
+      "id_token": 2,
+      "nomor": "IJZ-FIKTIF-2026-102",
+      "nama": "Mahasiswa Fiktif B",
+      "hash_nomor": "0x01c5be2cab9a938f714e085fdec91c733ed7fd19040f98998de72f05e2ee5875",
+      "hash_pdf": "0x0c357ada781d3a453cb39b628eb761bb6e9edaa4000c28e59845d1afe02ebf3f"
+    },
+    "C_lama.pdf": {
+      "id_token": 3,
+      "nomor": "IJZ-FIKTIF-2026-103",
+      "nama": "Mahasiswa Fiktif C",
+      "hash_nomor": "0x69af3f8a88218a792c15aa4ee2160adf3d37b71cb81437ca9a4d8a6836694a15",
+      "hash_pdf": "0x13b0a6d10b744396ccff9f883ab1313ced07c19131a67a9d1e7c769619bf8d24"
+    },
+    "C_pengganti.pdf": {
+      "id_token": 4,
+      "nomor": "IJZ-FIKTIF-2026-103",
+      "nama": "Mahasiswa Fiktif C",
+      "hash_nomor": "0x69af3f8a88218a792c15aa4ee2160adf3d37b71cb81437ca9a4d8a6836694a15",
+      "hash_pdf": "0x075b1b75962bdacac99e4d4b2a1a3761b69f562aaceeea12461d97eec01640d8"
+    },
+    "D5_qr_ditempel.pdf": {
+      "id_token": 1,
+      "nomor": "IJZ-FIKTIF-2026-104",
+      "nama": "Pemegang Dokumen Lain",
+      "hash_nomor": "0x4c08441cf8b13c7e97bac9e1075f46d9a76151234d69eefe78d6891d6846afa8",
+      "hash_pdf": "0x6f919634fc5000e724b33ecaffbb33ea782189e2e041b2b71b4dc4a1b63c8596"
+    },
+    "D6_id_tidak_terbit.pdf": {
+      "id_token": 9999,
+      "nomor": "IJZ-FIKTIF-2026-105",
+      "nama": "Mahasiswa Fiktif D",
+      "hash_nomor": "0x875181186c5ade1a34650a6616c2941ea71386ddce9cd399d76afe643ec5bac9",
+      "hash_pdf": "0x026d10919ae8887753316a6214e0fa906001f14b8a9632b0f7715e5530ae57f9"
+    },
+    "D7_nama_diubah.pdf": {
+      "id_token": 1,
+      "nomor": "IJZ-FIKTIF-2026-101",
+      "nama": "Mahasiswa Fiktif Z",
+      "hash_nomor": "0x89add3d80583a36c38575e25fd58a2124100680f80968c9002cbb63bf96ac7c3",
+      "hash_pdf": "0xdff9292879e20e6dded826efca28c098b87fcf57c965412d8c59d97e8e8994ba"
+    }
+  },
+  "kasus": [
+    {
+      "no": 1,
+      "kasus": "ijazah aktif",
+      "berkas": "A_aktif.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "asli"
+    },
+    {
+      "no": 2,
+      "kasus": "ijazah yang dicabut tanpa penggantian",
+      "berkas": "B_dicabut.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "tidak berlaku"
+    },
+    {
+      "no": 3,
+      "kasus": "token lama setelah penerbitan ulang",
+      "berkas": "C_lama.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "tidak berlaku"
+    },
+    {
+      "no": 4,
+      "kasus": "token pengganti setelah penerbitan ulang",
+      "berkas": "C_pengganti.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "asli"
+    },
+    {
+      "no": 5,
+      "kasus": "QR code ijazah aktif yang ditempel pada dokumen lain",
+      "berkas": "D5_qr_ditempel.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "palsu"
+    },
+    {
+      "no": 6,
+      "kasus": "QR code berisi ID token yang tidak pernah diterbitkan",
+      "berkas": "D6_id_tidak_terbit.pdf",
+      "masukan": [
+        "nomor",
+        "pdf"
+      ],
+      "diharapkan": "palsu"
+    },
+    {
+      "no": 7,
+      "kasus": "berkas PDF ijazah aktif yang nama fiktifnya diubah",
+      "berkas": "D7_nama_diubah.pdf",
+      "masukan": [
+        "pdf"
+      ],
+      "diharapkan": "palsu"
+    }
+  ],
+  "token": {
+    "A": 1,
+    "B": 2,
+    "C_lama": 3,
+    "C_pengganti": 4
+  }
+}

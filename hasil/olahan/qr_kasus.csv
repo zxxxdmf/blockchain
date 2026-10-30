@@ -1,0 +1,14 @@
+no,kasus,masukan,id_token,hash,hasil_kontrak,kategori_cast,diharapkan,sesuai_cast,ditampilkan_halaman,tangkapan_layar
+1,ijazah aktif,nomor,1,0x89add3d80583a36c38575e25fd58a2124100680f80968c9002cbb63bf96ac7c3,3,asli,asli,True,asli,K1_nomor.png
+1,ijazah aktif,pdf,1,0xc249b6519a470d5319d3b6ccda3679fc7984e7b245c7cbb6fc4fff988db9e6e1,3,asli,asli,True,asli,K1_pdf.png
+2,ijazah yang dicabut tanpa penggantian,nomor,2,0x01c5be2cab9a938f714e085fdec91c733ed7fd19040f98998de72f05e2ee5875,2,tidak berlaku,tidak berlaku,True,tidak berlaku,K2_nomor.png
+2,ijazah yang dicabut tanpa penggantian,pdf,2,0x0c357ada781d3a453cb39b628eb761bb6e9edaa4000c28e59845d1afe02ebf3f,2,tidak berlaku,tidak berlaku,True,tidak berlaku,K2_pdf.png
+3,token lama setelah penerbitan ulang,nomor,3,0x69af3f8a88218a792c15aa4ee2160adf3d37b71cb81437ca9a4d8a6836694a15,2,tidak berlaku,tidak berlaku,True,tidak berlaku,K3_nomor.png
+3,token lama setelah penerbitan ulang,pdf,3,0x13b0a6d10b744396ccff9f883ab1313ced07c19131a67a9d1e7c769619bf8d24,2,tidak berlaku,tidak berlaku,True,tidak berlaku,K3_pdf.png
+4,token pengganti setelah penerbitan ulang,nomor,4,0x69af3f8a88218a792c15aa4ee2160adf3d37b71cb81437ca9a4d8a6836694a15,3,asli,asli,True,asli,K4_nomor.png
+4,token pengganti setelah penerbitan ulang,pdf,4,0x075b1b75962bdacac99e4d4b2a1a3761b69f562aaceeea12461d97eec01640d8,3,asli,asli,True,asli,K4_pdf.png
+5,QR code ijazah aktif yang ditempel pada dokumen lain,nomor,1,0x4c08441cf8b13c7e97bac9e1075f46d9a76151234d69eefe78d6891d6846afa8,1,palsu,palsu,True,palsu,K5_nomor.png
+5,QR code ijazah aktif yang ditempel pada dokumen lain,pdf,1,0x6f919634fc5000e724b33ecaffbb33ea782189e2e041b2b71b4dc4a1b63c8596,1,palsu,palsu,True,palsu,K5_pdf.png
+6,QR code berisi ID token yang tidak pernah diterbitkan,nomor,9999,0x875181186c5ade1a34650a6616c2941ea71386ddce9cd399d76afe643ec5bac9,0,palsu,palsu,True,palsu,K6_nomor.png
+6,QR code berisi ID token yang tidak pernah diterbitkan,pdf,9999,0x026d10919ae8887753316a6214e0fa906001f14b8a9632b0f7715e5530ae57f9,0,palsu,palsu,True,palsu,K6_pdf.png
+7,berkas PDF ijazah aktif yang nama fiktifnya diubah,pdf,1,0xdff9292879e20e6dded826efca28c098b87fcf57c965412d8c59d97e8e8994ba,1,palsu,palsu,True,palsu,K7_pdf.png

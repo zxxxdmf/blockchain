@@ -1,0 +1,14 @@
+berkas,asal_iphone,waktu_utc,id_token_tampil,masukan,hasil_tampil,kode_hasil,hash_tampil,keterangan
+K1_nomor.png,IMG_5266.PNG,2026-10-30 12:02:56 +0000,1,nomor IJZ-FIKTIF-2026-101,ASLI,3,0x89add3d8...bf96ac7c3,hash nomor 101
+K1_pdf.png,IMG_5267.PNG,2026-10-30 12:04:39 +0000,1,berkas A_aktif 2.pdf,ASLI,3,0xc249b651...8db9e6e1,= hash A_aktif.pdf (nama berkas di iPhone diberi akhiran 2)
+K2_nomor.png,IMG_5268.PNG,2026-10-30 12:05:25 +0000,2,nomor IJZ-FIKTIF-2026-102,TIDAK BERLAKU,2,0x01c5be2c...e2ee5875,hash nomor 102
+K2_pdf.png,IMG_5269.PNG,2026-10-30 12:06:06 +0000,2,berkas B_dicabut.pdf,TIDAK BERLAKU,2,0x0c357ada...afe02ebf3f,= hash B_dicabut.pdf
+K3_nomor.png,IMG_5270.PNG,2026-10-30 12:06:56 +0000,3,nomor IJZ-FIKTIF-2026-103,TIDAK BERLAKU,2,0x69af3f8a...36694a15,hash nomor 103
+K3_pdf.png,IMG_5271.PNG,2026-10-30 12:07:14 +0000,3,berkas C_lama.pdf,TIDAK BERLAKU,2,0x13b0a6d1...9bf8d24,= hash C_lama.pdf
+K4_nomor.png,IMG_5272.PNG,2026-10-30 12:08:12 +0000,4,nomor IJZ-FIKTIF-2026-103,ASLI,3,0x69af3f8a...36694a15,hash nomor 103
+K4_pdf.png,IMG_5273.PNG,2026-10-30 12:08:29 +0000,4,berkas C_pengganti.pdf,ASLI,3,0x075b1b75...c01640d8,= hash C_pengganti.pdf
+K5_nomor.png,Verifikasi Ijazah Fiktif.png,2026-10-30 12:23:22 +0000,1,nomor IJZ-FIKTIF-2026-104,PALSU,1,0x4c08441c...6846afa8,"hash nomor 104; terlewat pada urutan awal, dijalankan setelah K7_pdf (satu kali)"
+K5_pdf.png,IMG_5275.PNG,2026-10-30 12:16:05 +0000,1,berkas D5_qr_ditempel.pdf,PALSU,1,0x6f919634...63c8596,= hash D5_qr_ditempel.pdf
+K6_nomor.png,IMG_5277.PNG,2026-10-30 12:17:25 +0000,9999,nomor IJZ-FIKTIF-2026-105,PALSU,0,0x87518118...3ec5bac9,hash nomor 105
+K6_pdf.png,IMG_5278.PNG,2026-10-30 12:17:46 +0000,9999,berkas D6_id_tidak_terbit.pdf,PALSU,0,0x026d1091...e5530ae57f9,= hash D6_id_tidak_terbit.pdf
+K7_pdf.png,IMG_5279.PNG,2026-10-30 12:18:42 +0000,1,berkas D7_nama_diubah 2.pdf,PALSU,1,0xdff92928...e8994ba,= hash D7_nama_diubah.pdf (nama berkas di iPhone diberi akhiran 2)
